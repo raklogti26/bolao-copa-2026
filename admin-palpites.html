@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin – Palpites do Bolão</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h1>📝 Administração de Palpites</h1>
+
+<hr>
+
+<h2>Inserir Palpite de Jogo</h2>
+
+<select id="participante"></select>
+<select id="jogo"></select>
+
+<input type="number" id="gols1" placeholder="Gols Time 1" min="0">
+<input type="number" id="gols2" placeholder="Gols Time 2" min="0">
+
+<button onclick="adicionarPalpite()">Adicionar Palpite</button>
+
+<hr>
+
+<h2>Palpite de Campeão</h2>
+
+<select id="participanteCampeao"></select>
+<input type="text" id="campeao" placeholder="Nome da seleção campeã">
+
+<button onclick="definirCampeao()">Definir Campeão</button>
+
+<hr>
+
+<h2>Palpites Registrados</h2>
+<ul id="listaPalpites"></ul>
+
+<hr>
+
+<button onclick="exportarPalpites()">Exportar palpites.json</button>
+
+<script>
+let palpites = [];
+
+// Carregar participantes
+fetch("dados/participantes.json").then(r => r.json()).then(data => {
+  data.forEach(p => {
+    document.getElementById("participante").innerHTML +=
+      `<option value="${p.id}">${p.nome}</option>`;
+    document.getElementById("participanteCampeao").innerHTML +=
+      `<option value="${p.id}">${p.nome}</option>`;
+  });
+});
+
+// Carregar jogos
+fetch("dados/jogos.json").then(r => r.json()).then(data => {
+  const jogos = [];
+
+  data.grupos.forEach(g => g.jogos.forEach(j => jogos.push(j)));
+  data.eliminatorias.forEach(f => f.jogos.forEach(j => jogos.push(j)));
+
+  jogos.forEach(j => {
+    document.getElementById("jogo").innerHTML +=
+      `<option value="${j.id}">${j.selecao1} x ${j.selecao2}</option>`;
+  });
+});
+
+function adicionarPalpite() {
+  palpites.push({
+    id_participante: Number(participante.value),
+    id_jogo: jogo.value,
+    palpite_gols1: Number(gols1.value),
+    palpite_gols2: Number(gols2.value)
+  });
+
+  renderizar();
+}
+
+function definirCampeao() {
+  palpites.push({
+    id_participante: Number(participanteCampeao.value),
+    campeao: campeao.value
+  });
+
+  renderizar();
+}
+
+function renderizar() {
+  const ul = document.getElementById("listaPalpites");
+  ul.innerHTML = "";
+  palpites.forEach(p => {
+    ul.innerHTML += `<li>${JSON.stringify(p)}</li>`;
+  });
+}
+
+function exportarPalpites() {
+  const blob = new Blob(
+    [JSON.stringify(palpites, null, 2)],
+    { type: "application/json" }
+  );
+
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "palpites.json";
+  a.click();
+}
+</script>
+
+</body>
+</html>

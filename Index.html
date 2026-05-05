@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <link rel="stylesheet" href="css/estilo.css">
+    <meta charset="UTF-8">
+    <title>Bolão Copa do Mundo 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+<header>
+    <h1>🏆 Bolão Copa do Mundo 2026</h1>
+    <p>Última atualização: <strong id="ultimaAtualizacao">--/--/----</strong></p>
+</header>
+
+<!-- Abas principais -->
+<nav>
+    <button onclick="mostrarAba('ranking')">Ranking</button>
+    <button onclick="mostrarAba('rodadas')">Rodadas</button>
+</nav>
+
+<main>
+
+    <!-- ABA RANKING -->
+    <section id="aba-ranking">
+        <h2>Ranking Geral</h2>
+
+        <table border="1" cellpadding="8">
+            <thead>
+                <tr>
+                    <th>Posição</th>
+                    <th>Participante</th>
+                    <th>Pontos</th>
+                </tr>
+            </thead>
+            <tbody id="tabelaRanking">
+                <!-- Dados via JS -->
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ABA RODADAS -->
+    <section id="aba-rodadas" style="display:none;">
+        <h2>Rodadas da Copa</h2>
+
+        <!-- Sub-abas -->
+        <nav>
+            <button onclick="mostrarRodada('grupos')">Fase de Grupos</button>
+            <button onclick="mostrarRodada('eliminatorias')">Eliminatórias</button>
+        </nav>
+
+        <!-- FASE DE GRUPOS -->
+        <section id="rodada-grupos">
+        <section id="rodada-grupos">
+  <h3>Fase de Grupos</h3>
+  <div id="gruposContainer">
+    <!-- grupos renderizados via JS -->
+  </div>
+</section>
+        </section>
+
+        <!-- ELIMINATÓRIAS -->
+       
+<section id="rodada-eliminatorias" style="display:none;">
+    <h3>Fase Eliminatória</h3>
+
+    <div id="eliminatoriasContainer">
+        <!-- Fases e jogos das eliminatórias entram aqui via JS -->
+    </div>
+
+
+    </section>
+
+</main>
+
+<footer>
+    <p>
+        © 2026 - Bolão Copa do Mundo |
+        <a href="regras.html">Regras do Bolão</a>
+    </p>
+</footer>
+
+<!-- JS mínimo -->
+<script>
+function mostrarAba(aba) {
+    document.getElementById("aba-ranking").style.display = "none";
+    document.getElementById("aba-rodadas").style.display = "none";
+    document.getElementById("aba-" + aba).style.display = "block";
+}
+
+function mostrarRodada(tipo) {
+    document.getElementById("rodada-grupos").style.display = "none";
+    document.getElementById("rodada-eliminatorias").style.display = "none";
+    document.getElementById("rodada-" + tipo).style.display = "block";
+}
+</script>
+     <script src="js/ranking.js"></script>
+     <script src="js/rodadas.js"></script>
+</body>
+</html>

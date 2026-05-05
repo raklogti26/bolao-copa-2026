@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Administração - Bolão 2026</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<h1>⚙️ Administração do Bolão – Copa 2026</h1>
+
+<hr>
+
+<!-- Formulário de cadastro -->
+<h2>Cadastrar Participante</h2>
+
+<input
+    type="text"
+    id="nomeParticipante"
+    placeholder="Nome do participante"
+>
+<button onclick="adicionarParticipante()">Adicionar</button>
+
+<hr>
+
+<!-- Lista de participantes -->
+<h2>Participantes Cadastrados</h2>
+
+<ul id="listaParticipantes"></ul>
+
+<hr>
+
+<!-- Exportação -->
+<button onclick="exportarJSON()">Exportar participantes.json</button>
+
+<script>
+let participantes = JSON.parse(localStorage.getItem("participantes")) || [];
+
+function salvar() {
+    localStorage.setItem("participantes", JSON.stringify(participantes));
+}
+
+function adicionarParticipante() {
+    const nome = document.getElementById("nomeParticipante").value.trim();
+    if (!nome) return;
+
+    participantes.push({
+        id: participantes.length + 1,
+        nome: nome,
+        pontos: 0
+    });
+
+    document.getElementById("nomeParticipante").value = "";
+    salvar();
+    renderizar();
+}
+
+function renderizar() {
+    const lista = document.getElementById("listaParticipantes");
+    lista.innerHTML = "";
+
+    participantes.forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = `${p.id} - ${p.nome}`;
+        lista.appendChild(li);
+    });
+}
+
+function exportarJSON() {
+    const dataStr = JSON.stringify(participantes, null, 2);
+    const blob = new Blob([dataStr], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "participantes.json";
+    a.click();
+
+    URL.revokeObjectURL(url);
+}
+
+renderizar();
+</script>
+
+</body>
+</html>
