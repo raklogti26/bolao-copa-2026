@@ -1,67 +1,52 @@
-{
-  "grupos": [
-    {
-      "grupo": "A",
-      "jogos": [
-        {
-          "id": "GA1",
-          "selecao1": "Brasil",
-          "selecao2": "Japão",
-          "gols1": 2,
-          "gols2": 0,
-          "status": "encerrado"
-        },
-        {
-          "id": "GA2",
-          "selecao1": "Alemanha",
-          "selecao2": "Nigéria",
-          "gols1": null,
-          "gols2": null,
-          "status": "agendado"
-        }
-      ]
-    },
-    {
-      "grupo": "B",
-      "jogos": [
-        {
-          "id": "GB1",
-          "selecao1": "Argentina",
-          "selecao2": "Canadá",
-          "gols1": null,
-          "gols2": null,
-          "status": "agendado"
-        }
-      ]
-    }
-  ],
+[
+  {
+    "id": "GA1",
+    "grupo": "A",
+    "fase": "grupos",
+    "selecao1": "Brasil",
+    "selecao2": "Japão",
+    "gols1": 2,
+    "gols2": 0,
+    "status": "encerrado"
+  },
+  {
+    "id": "GA2",
+    "grupo": "A",
+    "fase": "grupos",
+    "selecao1": "Alemanha",
+    "selecao2": "Nigéria",
+    "gols1": null,
+    "gols2": null,
+    "status": "agendado"
+  },
+  {
+    "id": "GB1",
+    "grupo": "B",
+    "fase": "grupos",
+    "selecao1": "Argentina",
+    "selecao2": "Canadá",
+    "gols1": null,
+    "gols2": null,
+    "status": "agendado"
+  },
 
-  "eliminatorias": [
-    {
-      "fase": "Oitavas de Final",
-      "jogos": [
-        {
-          "id": "O1",
-          "selecao1": "Brasil",
-          "selecao2": "Espanha",
-          "gols1": 3,
-          "gols2": 1,
-          "status": "encerrado"
-        }
-      ]
-    },
-    {
-      "fase": "Quartas de Final",
-      "jogos": [
-        {
-          "id": "Q1",
-          "selecao1": "Brasil",
-          "selecao2": "França",
-          "gols1": null,
-          "gols2": null,
-          "status": "agendado"
-        }
-      ]
-    }
-  ]
-}
+  {
+    "id": "O1",
+    "fase": "oitavas",
+    "selecao1": "Brasil",
+    "selecao2": "Espanha",
+    "gols1": 3,
+    "gols2": 1,
+    "status": "encerrado"
+  },
+  {
+    "id": "Q1",
+    "fase": "quartas",
+    "selecao1": "Brasil",
+    "selecao2": "França",
+    "gols1": null,
+    "gols2": null,
+    "status": "agendado"
+  }
+]
+``
