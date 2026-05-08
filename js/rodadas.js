@@ -23,15 +23,9 @@ function renderizarGrupos(grupos) {
 
     const ul = document.createElement("ul");
 
-    g.jogos.forEach(j => {
-      const placar =
-        j.gols1 === null ? "— x —" : `${j.gols1} x ${j.gols2}`;
-      const status =
-        j.status === "encerrado" ? "Fim do jogo" : "Agendado";
-
+    g.selecoes.forEach(s => {
       const li = document.createElement("li");
-      li.textContent = `${j.selecao1} ${placar} ${j.selecao2} — ${status}`;
-
+      li.textContent = s;
       ul.appendChild(li);
     });
 
