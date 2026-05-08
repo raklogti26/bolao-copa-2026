@@ -48,6 +48,47 @@
 
 </main>
 
+    let participantes = [];
+
+// ADICIONAR
+function adicionarParticipante() {
+    const input = document.getElementById("nomeParticipante");
+    const nome = input.value.trim();
+
+    if (!nome) return;
+
+    participantes.push(nome);
+
+    input.value = "";
+
+    renderListaParticipantes();
+}
+
+// LISTAR
+function renderListaParticipantes() {
+    const ul = document.getElementById("listaParticipantes");
+    ul.innerHTML = "";
+
+    participantes.forEach((p, index) => {
+        const li = document.createElement("li");
+
+        li.textContent = p;
+
+        const btn = document.createElement("button");
+        btn.textContent = "Remover";
+        btn.onclick = () => removerParticipante(index);
+
+        li.appendChild(btn);
+        ul.appendChild(li);
+    });
+}
+
+// REMOVER
+function removerParticipante(index) {
+    participantes.splice(index, 1);
+    renderListaParticipantes();
+}
+    
 <script>
 function mostrarAba(aba) {
     document.getElementById("aba-participantes").style.display = "none";
