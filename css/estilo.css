@@ -290,3 +290,30 @@ button {
 button:hover {
   background-color: var(--cor-primaria-escura);
 }
+====================================================
+Lista de participantes
+====================================================
+
+#listaParticipantes {
+  margin-top: 15px;
+  list-style: none;
+  padding: 0;
+}
+
+#listaParticipantes li {
+  display: flex;
+  justify-content: space-between;
+  background: var(--cor-card);
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+#listaParticipantes button {
+  background: #ff4d4d;
+  border: none;
+  color: #fff;
+  padding: 4px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
