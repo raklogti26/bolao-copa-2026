@@ -1,0 +1,110 @@
+[
+  {
+    "grupo": "A",
+    "selecoes": [
+      "México",
+      "África do Sul",
+      "República da Coreia",
+      "Tchéquia"
+    ]
+  },
+  {
+    "grupo": "B",
+    "selecoes": [
+      "Canadá",
+      "Bósnia e Herzegovina",
+      "Catar",
+      "Suíça"
+    ]
+  },
+  {
+    "grupo": "C",
+    "selecoes": [
+      "Brasil",
+      "Marrocos",
+      "Haiti",
+      "Escócia"
+    ]
+  },
+  {
+    "grupo": "D",
+    "selecoes": [
+      "Estados Unidos",
+      "Paraguai",
+      "Austrália",
+      "Turquia"
+    ]
+  },
+  {
+    "grupo": "E",
+    "selecoes": [
+      "Alemanha",
+      "Curaçao",
+      "Costa do Marfim",
+      "Equador"
+    ]
+  },
+  {
+    "grupo": "F",
+    "selecoes": [
+      "Holanda",
+      "Japão",
+      "Suécia",
+      "Tunísia"
+    ]
+  },
+  {
+    "grupo": "G",
+    "selecoes": [
+      "Bélgica",
+      "Egito",
+      "Irã",
+      "Nova Zelândia"
+    ]
+  },
+  {
+    "grupo": "H",
+    "selecoes": [
+      "Espanha",
+      "Cabo Verde",
+      "Arábia Saudita",
+      "Uruguai"
+    ]
+  },
+  {
+    "grupo": "I",
+    "selecoes": [
+      "França",
+      "Senegal",
+      "Iraque",
+      "Noruega"
+    ]
+  },
+  {
+    "grupo": "J",
+    "selecoes": [
+      "Argentina",
+      "Argélia",
+      "Áustria",
+      "Jordânia"
+    ]
+  },
+  {
+    "grupo": "K",
+    "selecoes": [
+      "Portugal",
+      "República Democrática do Congo",
+      "Uzbequistão",
+      "Colômbia"
+    ]
+  },
+  {
+    "grupo": "L",
+    "selecoes": [
+      "Inglaterra",
+      "Croácia",
+      "Gana",
+      "Panamá"
+    ]
+  }
+]
