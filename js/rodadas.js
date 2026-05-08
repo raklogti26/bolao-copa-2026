@@ -1,10 +1,11 @@
-fetch("dados/jogos.json")
+
+fetch("dados/grupos.json")
   .then(res => res.json())
-  .then(data => {
-    renderizarGrupos(data.grupos || []);
-    renderizarEliminatorias(data.eliminatorias || []);
+  .then(grupos => {
+    renderizarGrupos(grupos);
   })
-  .catch(err => console.error("Erro ao carregar jogos:", err));
+  .catch(err => console.error("Erro ao carregar grupos:", err));
+
 
 /* ==================================================
    FASE DE GRUPOS
