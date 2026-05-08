@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Administração do Bolão</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body class="admin">
+
+<header>
+    <h1>⚙️ Administração do Bolão</h1>
+</header>
+
+<nav>
+    <button onclick="mostrarAba('participantes')">Participantes</button>
+    <button onclick="mostrarAba('palpites')">Palpites</button>
+    <button onclick="mostrarAba('resultados')">Resultados</button>
+</nav>
+
+<main>
+
+    <!-- PARTICIPANTES -->
+    <section id="aba-participantes">
+        <h2>Participantes</h2>
+
+        <input type="text" id="nomeParticipante" placeholder="Nome">
+        <button onclick="adicionarParticipante()">Adicionar</button>
+
+        <ul id="listaParticipantes"></ul>
+    </section>
+
+    <!-- PALPITES -->
+    <section id="aba-palpites" style="display:none;">
+        <h2>Palpites</h2>
+
+        <iframe src="admin-palpites.html" style="width:100%; height:500px; border:none;"></iframe>
+    </section>
+
+    <!-- RESULTADOS -->
+    <section id="aba-resultados" style="display:none;">
+        <h2>Resultados dos Jogos</h2>
+
+        <iframe src="admin-jogos.html" style="width:100%; height:500px; border:none;"></iframe>
+    </section>
+
+</main>
+
+<script>
+function mostrarAba(aba) {
+    document.getElementById("aba-participantes").style.display = "none";
+    document.getElementById("aba-palpites").style.display = "none";
+    document.getElementById("aba-resultados").style.display = "none";
+
+    document.getElementById("aba-" + aba).style.display = "block";
+}
+</script>
+
+</body>
+</html>
