@@ -41,32 +41,27 @@
     <section id="aba-palpites" style="display:none;">
         <h2>Palpites</h2>
 
-        <iframe src="admin-palpites.html" style="width:100%; height:500px; border:none;"></iframe>
+        <label>Participante:</label>
+        <select id="selectParticipante"></select>
+
+        <div id="listaPalpites"></div>
+
+        <button onclick="salvarPalpites()">Salvar Palpites</button>
     </section>
 
     <!-- RESULTADOS -->
     <section id="aba-resultados" style="display:none;">
- 
-    <h2>Palpites</h2>
+        <h2>Resultados dos Jogos</h2>
 
-    <label>Participante:</label>
-    <select id="selectParticipante"></select>
-
-    <div id="listaPalpites"></div>
-
-    <button onclick="salvarPalpites()">Salvar Palpites</button>
-
+        <div id="listaJogos"></div>
     </section>
 
 </main>
 
-<!-- ✅ TODOS OS SCRIPTS DEVEM FICAR AQUI -->
 <script>
 
-
-
 // ==========================
-// 🔥 CONFIG FIREBASE
+// 🔥 FIREBASE CONFIG
 // ==========================
 const firebaseConfig = {
   apiKey: "AIzaSyA65IJsycu-tBDu1ZJ2FDXWSRoxetq091I",
@@ -78,10 +73,7 @@ const firebaseConfig = {
   appId: "1:47483489037:web:dd956178aa5eaf1e677e44"
 };
 
-// ✅ Inicializa Firebase
 firebase.initializeApp(firebaseConfig);
-
-// ✅ Referência do banco
 const db = firebase.database();
 
 
@@ -102,8 +94,6 @@ function mostrarAba(aba) {
 // ==========================
 // 👥 PARTICIPANTES
 // ==========================
-
-// ✅ Adicionar
 function adicionarParticipante() {
     const input = document.getElementById("nomeParticipante");
     const nome = input.value.trim();
@@ -115,19 +105,15 @@ function adicionarParticipante() {
     });
 
     input.value = "";
-
     carregarParticipantes();
 }
 
-
-// ✅ Carregar
 function carregarParticipantes() {
     const ul = document.getElementById("listaParticipantes");
     ul.innerHTML = "";
 
     db.ref("participantes").once("value", snapshot => {
         const dados = snapshot.val();
-
         if (!dados) return;
 
         Object.keys(dados).forEach(key => {
@@ -144,36 +130,22 @@ function carregarParticipantes() {
     });
 }
 
-
-// ✅ Remover
 function removerParticipante(nome) {
-const confirmar = confirm("Deseja mesmo remover este participante?");
-
-    if (!confirmar) return;
+    if (!confirm("Deseja mesmo remover este participante?")) return;
 
     db.ref("participantes/" + nome).remove();
-
     carregarParticipantes();
 }
 
 
-// ✅ Inicialização
-window.onload = () => {
-    carregarParticipantes();
-    carregarJogos();
-};
-
-    // ==========================
-// ⚽ RESULTADOS DOS JOGOS
 // ==========================
-
-// ✅ Lista de jogos base (temporário)
+// ⚽ RESULTADOS
+// ==========================
 const jogos = [
     { id: "J1", selecao1: "Brasil", selecao2: "Japão" },
     { id: "J2", selecao1: "Argentina", selecao2: "Canadá" }
 ];
 
-// ✅ Renderizar jogos
 function carregarJogos() {
     const container = document.getElementById("listaJogos");
     container.innerHTML = "";
@@ -194,7 +166,6 @@ function carregarJogos() {
     });
 }
 
-// ✅ Salvar resultado no Firebase
 function salvarResultado(jogoId) {
     const g1 = document.getElementById("g1-" + jogoId).value;
     const g2 = document.getElementById("g2-" + jogoId).value;
@@ -212,25 +183,85 @@ function salvarResultado(jogoId) {
     alert("Resultado salvo ✅");
 }
 
-    function carregarParticipantesSelect() {
+
+// ==========================
+// 🎯 PALPITES
+// ==========================
+const jogosPalpites = [
+    { id: "J1", selecao1: "Brasil", selecao2: "Japão" },
+    { id: "J2", selecao1: "Argentina", selecao2: "Canadá" }
+];
+
+function carregarParticipantesSelect() {
     const select = document.getElementById("selectParticipante");
     select.innerHTML = "";
 
     db.ref("participantes").once("value", snapshot => {
         const dados = snapshot.val();
-
         if (!dados) return;
 
         for (let key in dados) {
             const option = document.createElement("option");
             option.value = key;
             option.textContent = dados[key].nome;
-
             select.appendChild(option);
         }
     });
 }
-    
+
+function carregarPalpites() {
+    const container = document.getElementById("listaPalpites");
+    container.innerHTML = "";
+
+    jogosPalpites.forEach(jogo => {
+        const div = document.createElement("div");
+
+        div.innerHTML = `
+            <strong>${jogo.selecao1} x ${jogo.selecao2}</strong><br>
+            <input type="number" id="p1-${jogo.id}" placeholder="0" style="width:50px;">
+            x
+            <input type="number" id="p2-${jogo.id}" placeholder="0" style="width:50px;">
+            <hr>
+        `;
+
+        container.appendChild(div);
+    });
+}
+
+function salvarPalpites() {
+    const participante = document.getElementById("selectParticipante").value;
+
+    if (!participante) {
+        alert("Selecione um participante");
+        return;
+    }
+
+    jogosPalpites.forEach(jogo => {
+        const g1 = document.getElementById("p1-" + jogo.id).value;
+        const g2 = document.getElementById("p2-" + jogo.id).value;
+
+        if (g1 === "" || g2 === "") return;
+
+        db.ref(`palpites/${participante}/${jogo.id}`).set({
+            gols1: parseInt(g1),
+            gols2: parseInt(g2)
+        });
+    });
+
+    alert("Palpites salvos ✅");
+}
+
+
+// ==========================
+// 🚀 INICIALIZAÇÃO
+// ==========================
+window.onload = () => {
+    carregarParticipantes();
+    carregarJogos();
+    carregarParticipantesSelect();
+    carregarPalpites();
+};
+
 </script>
 
 </body>
