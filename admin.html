@@ -5,14 +5,12 @@
     <title>Administração do Bolão</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/estilo.css">
 
-   <!-- 🔥 FIREBASE -->
+    <!-- 🔥 FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-</head>
-
-    
-    <link rel="stylesheet" href="css/estilo.css">
 </head>
 
 <body class="admin">
@@ -55,48 +53,9 @@
 
 </main>
 
-    let participantes = [];
-
-// ADICIONAR
-function adicionarParticipante() {
-    const input = document.getElementById("nomeParticipante");
-    const nome = input.value.trim();
-
-    if (!nome) return;
-
-    participantes.push(nome);
-
-    input.value = "";
-
-    renderListaParticipantes();
-}
-
-// LISTAR
-function renderListaParticipantes() {
-    const ul = document.getElementById("listaParticipantes");
-    ul.innerHTML = "";
-
-    participantes.forEach((p, index) => {
-        const li = document.createElement("li");
-
-        li.textContent = p;
-
-        const btn = document.createElement("button");
-        btn.textContent = "Remover";
-        btn.onclick = () => removerParticipante(index);
-
-        li.appendChild(btn);
-        ul.appendChild(li);
-    });
-}
-
-// REMOVER
-function removerParticipante(index) {
-    participantes.splice(index, 1);
-    renderListaParticipantes();
-}
-    
+<!-- ✅ TODOS OS SCRIPTS DEVEM FICAR AQUI -->
 <script>
+
 function mostrarAba(aba) {
     document.getElementById("aba-participantes").style.display = "none";
     document.getElementById("aba-palpites").style.display = "none";
@@ -104,18 +63,8 @@ function mostrarAba(aba) {
 
     document.getElementById("aba-" + aba).style.display = "block";
 }
-</script>
-const firebaseConfig = {
-  apiKey: "AIzaSyA65IJsycu-tBDu1ZJ2FDXWSRoxetq091I",
-  authDomain: "bolao-copa-2026-b39f1.firebaseapp.com",
-  databaseURL: "https://bolao-copa-2026-b39f1-default-rtdb.firebaseio.com",
-  projectId: "bolao-copa-2026-b39f1",
-  storageBucket: "bolao-copa-2026-b39f1.firebasestorage.app",
-  messagingSenderId: "47483489037",
-  appId: "1:47483489037:web:dd956178aa5eaf1e677e44"
-};
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+</script>
+
 </body>
 </html>
