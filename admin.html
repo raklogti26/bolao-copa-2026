@@ -174,20 +174,19 @@ function carregarJogos() {
     });
 }
 
+
 function salvarResultado(jogoId) {
     const g1 = document.getElementById("g1-" + jogoId).value;
     const g2 = document.getElementById("g2-" + jogoId).value;
 
-    
- if (g1 === "" || g2 === "") {
+    if (g1 === "" || g2 === "") {
         alert("Preencha os dois placares");
         return;
     }
 
     const jogo = jogos.find(j => j.id === jogoId);
 
-    // 🔥 verifica se já está finalizado
-    db.ref("jogos/" + jogoId).once("value", snap => {
+    db.ref("jogos/" + jogoId).once("value").then(snap => {
         const dados = snap.val();
 
         if (dados && dados.finalizado) {
@@ -200,13 +199,13 @@ function salvarResultado(jogoId) {
             selecao2: jogo.selecao2,
             gols1: parseInt(g1),
             gols2: parseInt(g2),
-            finalizado: true // 🔒 trava automaticamente
+            finalizado: true
         });
 
-
-
-    alert("Resultado salvo ✅");
+        alert("Resultado salvo e finalizado ✅");
+    });
 }
+
 
 
 // ==========================
