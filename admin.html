@@ -57,8 +57,9 @@
 <script>
 
 
-/ ==========================
-// 🔥 FIREBASE CONFIG
+
+// ==========================
+// 🔥 CONFIG FIREBASE
 // ==========================
 const firebaseConfig = {
   apiKey: "AIzaSyA65IJsycu-tBDu1ZJ2FDXWSRoxetq091I",
@@ -70,20 +71,22 @@ const firebaseConfig = {
   appId: "1:47483489037:web:dd956178aa5eaf1e677e44"
 };
 
-// ✅ INICIALIZA PRIMEIRO
+// ✅ Inicializa Firebase
 firebase.initializeApp(firebaseConfig);
 
-// ✅ DEPOIS cria db
+// ✅ Referência do banco
 const db = firebase.database();
 
 
 // ==========================
-// 🧭 CONTROLE DE ABAS
+// 🧭 ABAS
 // ==========================
 function mostrarAba(aba) {
-    document.getElementById("aba-participantes").style.display = "none";
-    document.getElementById("aba-palpites").style.display = "none";
-    document.getElementById("aba-resultados").style.display = "none";
+    const abas = ["participantes", "palpites", "resultados"];
+
+    abas.forEach(a => {
+        document.getElementById("aba-" + a).style.display = "none";
+    });
 
     document.getElementById("aba-" + aba).style.display = "block";
 }
@@ -93,6 +96,7 @@ function mostrarAba(aba) {
 // 👥 PARTICIPANTES
 // ==========================
 
+// ✅ Adicionar
 function adicionarParticipante() {
     const input = document.getElementById("nomeParticipante");
     const nome = input.value.trim();
@@ -105,12 +109,11 @@ function adicionarParticipante() {
 
     input.value = "";
 
-    alert("Participante salvo ✅");
-
     carregarParticipantes();
 }
 
 
+// ✅ Carregar
 function carregarParticipantes() {
     const ul = document.getElementById("listaParticipantes");
     ul.innerHTML = "";
@@ -120,7 +123,7 @@ function carregarParticipantes() {
 
         if (!dados) return;
 
-        for (let key in dados) {
+        Object.keys(dados).forEach(key => {
             const li = document.createElement("li");
             li.textContent = dados[key].nome;
 
@@ -130,22 +133,21 @@ function carregarParticipantes() {
 
             li.appendChild(btn);
             ul.appendChild(li);
-        }
+        });
     });
 }
 
 
+// ✅ Remover
 function removerParticipante(nome) {
     db.ref("participantes/" + nome).remove();
-
-    alert("Participante removido ❌");
 
     carregarParticipantes();
 }
 
 
-// ✅ carregar ao abrir
-window.onload = function() {
+// ✅ Inicialização
+window.onload = () => {
     carregarParticipantes();
 };
 
