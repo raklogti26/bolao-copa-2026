@@ -56,6 +56,17 @@
 <!-- ✅ TODOS OS SCRIPTS DEVEM FICAR AQUI -->
 <script>
 
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
+
+// 🔥 TESTE AUTOMÁTICO (APAGAMOS DEPOIS)
+db.ref("teste").set({
+    nome: "TESTE FUNCIONANDO"
+});
+
+    
 function mostrarAba(aba) {
     document.getElementById("aba-participantes").style.display = "none";
     document.getElementById("aba-palpites").style.display = "none";
