@@ -80,6 +80,7 @@ const db = firebase.database();
 // ==========================
 // 🧭 ABAS
 // ==========================
+
 function mostrarAba(aba) {
     const abas = ["participantes", "palpites", "resultados"];
 
@@ -88,7 +89,14 @@ function mostrarAba(aba) {
     });
 
     document.getElementById("aba-" + aba).style.display = "block";
+
+    // 🔥 correção aqui
+    if (aba === "palpites") {
+        carregarParticipantesSelect();
+        carregarPalpites();
+    }
 }
+
 
 
 // ==========================
