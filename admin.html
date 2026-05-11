@@ -140,6 +140,10 @@ function carregarParticipantes() {
 
 // ✅ Remover
 function removerParticipante(nome) {
+const confirmar = confirm("Deseja mesmo remover este participante?");
+
+    if (!confirmar) return;
+
     db.ref("participantes/" + nome).remove();
 
     carregarParticipantes();
