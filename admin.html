@@ -178,20 +178,31 @@ function salvarResultado(jogoId) {
     const g1 = document.getElementById("g1-" + jogoId).value;
     const g2 = document.getElementById("g2-" + jogoId).value;
 
-    if (g1 === "" || g2 === "") {
+    
+ if (g1 === "" || g2 === "") {
         alert("Preencha os dois placares");
         return;
     }
 
-    // 🔥 pega o jogo da lista
     const jogo = jogos.find(j => j.id === jogoId);
 
-    db.ref("jogos/" + jogoId).set({
-        selecao1: jogo.selecao1,
-        selecao2: jogo.selecao2,
-        gols1: parseInt(g1),
-        gols2: parseInt(g2)
-    });
+    // 🔥 verifica se já está finalizado
+    db.ref("jogos/" + jogoId).once("value", snap => {
+        const dados = snap.val();
+
+        if (dados && dados.finalizado) {
+            alert("Este jogo já está finalizado e não pode ser alterado.");
+            return;
+        }
+
+        db.ref("jogos/" + jogoId).set({
+            selecao1: jogo.selecao1,
+            selecao2: jogo.selecao2,
+            gols1: parseInt(g1),
+            gols2: parseInt(g2),
+            finalizado: true // 🔒 trava automaticamente
+        });
+
 
 
     alert("Resultado salvo ✅");
