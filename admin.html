@@ -5,6 +5,13 @@
     <title>Administração do Bolão</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+
+   <!-- 🔥 FIREBASE -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+</head>
+
+    
     <link rel="stylesheet" href="css/estilo.css">
 </head>
 
@@ -98,6 +105,17 @@ function mostrarAba(aba) {
     document.getElementById("aba-" + aba).style.display = "block";
 }
 </script>
+const firebaseConfig = {
+  apiKey: "AIzaSyA65IJsycu-tBDu1ZJ2FDXWSRoxetq091I",
+  authDomain: "bolao-copa-2026-b39f1.firebaseapp.com",
+  databaseURL: "https://bolao-copa-2026-b39f1-default-rtdb.firebaseio.com",
+  projectId: "bolao-copa-2026-b39f1",
+  storageBucket: "bolao-copa-2026-b39f1.firebasestorage.app",
+  messagingSenderId: "47483489037",
+  appId: "1:47483489037:web:dd956178aa5eaf1e677e44"
+};
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 </body>
 </html>
