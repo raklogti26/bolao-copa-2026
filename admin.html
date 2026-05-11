@@ -211,6 +211,25 @@ function salvarResultado(jogoId) {
 
     alert("Resultado salvo ✅");
 }
+
+    function carregarParticipantesSelect() {
+    const select = document.getElementById("selectParticipante");
+    select.innerHTML = "";
+
+    db.ref("participantes").once("value", snapshot => {
+        const dados = snapshot.val();
+
+        if (!dados) return;
+
+        for (let key in dados) {
+            const option = document.createElement("option");
+            option.value = key;
+            option.textContent = dados[key].nome;
+
+            select.appendChild(option);
+        }
+    });
+}
     
 </script>
 
