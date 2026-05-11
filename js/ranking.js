@@ -1,71 +1,67 @@
-// Aguarda o carregamento da página
 document.addEventListener("DOMContentLoaded", async () => {
 
-  const tabela = document.getElementById("tabelaRanking");
-  tabela.innerHTML = "";
+    const tabela = document.getElementById("tabelaRanking");
+    tabela.innerHTML = "";
 
-  // ==========================
-  // 🔥 BUSCA PARTICIPANTES NO FIREBASE
-  // ==========================
-  const snapshot = await firebase.database().ref("participantes").once("value");
-  const dados = snapshot.val();
+    const participantesSnap = await firebase.database().ref("participantes").once("value");
+    const palpitesSnap = await firebase.database().ref("palpites").once("value");
+    const resultadosSnap = await firebase.database().ref("jogos").once("value");
 
-  let participantes = [];
+    const participantes = participantesSnap.val() || {};
+    const palpites = palpitesSnap.val() || {};
+    const resultados = resultadosSnap.val() || {};
 
-  // ✅ Cria base do ranking com 0 pontos
-  for (let key in dados) {
-    participantes.push({
-      nome: dados[key].nome,
-      pontos: 0
+    let ranking = [];
+
+    for (let nome in participantes) {
+
+        let pontos = 0;
+
+        if (palpites[nome]) {
+            for (let jogoId in palpites[nome]) {
+
+                const palpite = palpites[nome][jogoId];
+                const resultado = resultados[jogoId];
+
+                if (!resultado) continue;
+
+                // ✅ ACERTO EXATO
+                if (
+                    palpite.gols1 === resultado.gols1 &&
+                    palpite.gols2 === resultado.gols2
+                ) {
+                    pontos += 3;
+                }
+                // ✅ ACERTO VENCEDOR
+                else if (
+                    (palpite.gols1 > palpite.gols2 && resultado.gols1 > resultado.gols2) ||
+                    (palpite.gols1 < palpite.gols2 && resultado.gols1 < resultado.gols2) ||
+                    (palpite.gols1 === palpite.gols2 && resultado.gols1 === resultado.gols2)
+                ) {
+                    pontos += 1;
+                }
+
+            }
+        }
+
+        ranking.push({
+            nome: nome,
+            pontos: pontos
+        });
+    }
+
+    ranking.sort((a, b) => b.pontos - a.pontos);
+
+    ranking.forEach((p, index) => {
+        const tr = document.createElement("tr");
+
+        tr.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${p.nome}</td>
+            <td>${p.pontos}</td>
+        `;
+
+        tabela.appendChild(tr);
     });
-  }
-
-  // ==========================
-  // 🔥 SE EXISTIR FUNÇÃO DE PONTUAÇÃO
-  // ==========================
-  if (typeof calcularPontuacao === "function") {
-
-    const pontuados = await calcularPontuacao();
-
-    // Substitui pontos se existirem
-    participantes.forEach(p => {
-      const encontrado = pontuados.find(x => x.nome === p.nome);
-      if (encontrado) {
-        p.pontos = encontrado.pontos;
-      }
-    });
-  }
-
-  // ==========================
-  // 🔥 ORDENA RANKING
-  // ==========================
-  participantes.sort((a, b) => b.pontos - a.pontos);
-
-  // ==========================
-  // 🔥 RENDERIZA TABELA
-  // ==========================
-  participantes.forEach((p, index) => {
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-      <td>${index + 1}</td>
-      <td>${p.nome}</td>
-      <td>${p.pontos}</td>
-    `;
-
-    tabela.appendChild(tr);
-  });
-
-  // ==========================
-  // 🕒 DATA/HORA
-  // ==========================
-  const agora = new Date();
-  const el = document.getElementById("ultimaAtualizacao");
-
-  if (el) {
-    el.textContent =
-      agora.toLocaleDateString("pt-BR") + " " +
-      agora.toLocaleTimeString("pt-BR");
-  }
 
 });
