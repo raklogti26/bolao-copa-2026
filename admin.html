@@ -57,22 +57,7 @@
 <script>
 
 
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.database();
-
-
-    
-function mostrarAba(aba) {
-    document.getElementById("aba-participantes").style.display = "none";
-    document.getElementById("aba-palpites").style.display = "none";
-    document.getElementById("aba-resultados").style.display = "none";
-
-    document.getElementById("aba-" + aba).style.display = "block";
-}
-
-    
-// ==========================
+/ ==========================
 // 🔥 FIREBASE CONFIG
 // ==========================
 const firebaseConfig = {
@@ -85,10 +70,10 @@ const firebaseConfig = {
   appId: "1:47483489037:web:dd956178aa5eaf1e677e44"
 };
 
-// ✅ Inicializa Firebase (forma correta para compat)
+// ✅ INICIALIZA PRIMEIRO
 firebase.initializeApp(firebaseConfig);
 
-// ✅ Referência do banco
+// ✅ DEPOIS cria db
 const db = firebase.database();
 
 
@@ -108,7 +93,6 @@ function mostrarAba(aba) {
 // 👥 PARTICIPANTES
 // ==========================
 
-// ✅ Adicionar participante no Firebase
 function adicionarParticipante() {
     const input = document.getElementById("nomeParticipante");
     const nome = input.value.trim();
@@ -123,11 +107,10 @@ function adicionarParticipante() {
 
     alert("Participante salvo ✅");
 
-    carregarParticipantes(); // atualiza lista
+    carregarParticipantes();
 }
 
 
-// ✅ Carregar participantes do Firebase
 function carregarParticipantes() {
     const ul = document.getElementById("listaParticipantes");
     ul.innerHTML = "";
@@ -135,11 +118,12 @@ function carregarParticipantes() {
     db.ref("participantes").once("value", snapshot => {
         const dados = snapshot.val();
 
+        if (!dados) return;
+
         for (let key in dados) {
             const li = document.createElement("li");
             li.textContent = dados[key].nome;
 
-            // botão remover
             const btn = document.createElement("button");
             btn.textContent = "Remover";
             btn.onclick = () => removerParticipante(key);
@@ -151,7 +135,6 @@ function carregarParticipantes() {
 }
 
 
-// ✅ Remover participante
 function removerParticipante(nome) {
     db.ref("participantes/" + nome).remove();
 
@@ -161,7 +144,7 @@ function removerParticipante(nome) {
 }
 
 
-// ✅ Carregar ao abrir a página
+// ✅ carregar ao abrir
 window.onload = function() {
     carregarParticipantes();
 };
