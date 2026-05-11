@@ -64,6 +64,102 @@ function mostrarAba(aba) {
     document.getElementById("aba-" + aba).style.display = "block";
 }
 
+    
+// ==========================
+// 🔥 FIREBASE CONFIG
+// ==========================
+const firebaseConfig = {
+  apiKey: "AIzaSyA65IJsycu-tBDu1ZJ2FDXWSRoxetq091I",
+  authDomain: "bolao-copa-2026-b39f1.firebaseapp.com",
+  databaseURL: "https://bolao-copa-2026-b39f1-default-rtdb.firebaseio.com",
+  projectId: "bolao-copa-2026-b39f1",
+  storageBucket: "bolao-copa-2026-b39f1.firebasestorage.app",
+  messagingSenderId: "47483489037",
+  appId: "1:47483489037:web:dd956178aa5eaf1e677e44"
+};
+
+// ✅ Inicializa Firebase (forma correta para compat)
+firebase.initializeApp(firebaseConfig);
+
+// ✅ Referência do banco
+const db = firebase.database();
+
+
+// ==========================
+// 🧭 CONTROLE DE ABAS
+// ==========================
+function mostrarAba(aba) {
+    document.getElementById("aba-participantes").style.display = "none";
+    document.getElementById("aba-palpites").style.display = "none";
+    document.getElementById("aba-resultados").style.display = "none";
+
+    document.getElementById("aba-" + aba).style.display = "block";
+}
+
+
+// ==========================
+// 👥 PARTICIPANTES
+// ==========================
+
+// ✅ Adicionar participante no Firebase
+function adicionarParticipante() {
+    const input = document.getElementById("nomeParticipante");
+    const nome = input.value.trim();
+
+    if (!nome) return;
+
+    db.ref("participantes/" + nome).set({
+        nome: nome
+    });
+
+    input.value = "";
+
+    alert("Participante salvo ✅");
+
+    carregarParticipantes(); // atualiza lista
+}
+
+
+// ✅ Carregar participantes do Firebase
+function carregarParticipantes() {
+    const ul = document.getElementById("listaParticipantes");
+    ul.innerHTML = "";
+
+    db.ref("participantes").once("value", snapshot => {
+        const dados = snapshot.val();
+
+        for (let key in dados) {
+            const li = document.createElement("li");
+            li.textContent = dados[key].nome;
+
+            // botão remover
+            const btn = document.createElement("button");
+            btn.textContent = "Remover";
+            btn.onclick = () => removerParticipante(key);
+
+            li.appendChild(btn);
+            ul.appendChild(li);
+        }
+    });
+}
+
+
+// ✅ Remover participante
+function removerParticipante(nome) {
+    db.ref("participantes/" + nome).remove();
+
+    alert("Participante removido ❌");
+
+    carregarParticipantes();
+}
+
+
+// ✅ Carregar ao abrir a página
+window.onload = function() {
+    carregarParticipantes();
+};
+
+    
 </script>
 
 </body>
