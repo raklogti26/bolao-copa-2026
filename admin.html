@@ -183,10 +183,16 @@ function salvarResultado(jogoId) {
         return;
     }
 
+    // 🔥 pega o jogo da lista
+    const jogo = jogos.find(j => j.id === jogoId);
+
     db.ref("jogos/" + jogoId).set({
+        selecao1: jogo.selecao1,
+        selecao2: jogo.selecao2,
         gols1: parseInt(g1),
         gols2: parseInt(g2)
     });
+
 
     alert("Resultado salvo ✅");
 }
