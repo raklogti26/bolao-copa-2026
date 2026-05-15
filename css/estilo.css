@@ -164,6 +164,20 @@ footer {
     background: #008c98;
 }
 
+.btn-voltar {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background: #00ADBB;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.btn-voltar:hover {
+    background: #008c98;
+}
+
 
 /* ==================================================
    NAVEGAÇÃO / ABAS PRINCIPAIS
