@@ -149,16 +149,6 @@ footer {
     color: #888;
 }
 
-/* BOTÃO VOLTAR (se quiser usar depois) */
-.btn-voltar {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background: #00ADBB;
-    color: #fff;
-    border-radius: 10px;
-    text-decoration: none;
-}
 
 .btn-voltar:hover {
     background: #008c98;
@@ -168,14 +158,14 @@ footer {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 15px;
-    background: #00ADBB;
+    background: #FF9E18;
     color: #fff;
     border-radius: 10px;
     text-decoration: none;
 }
 
 .btn-voltar:hover {
-    background: #008c98;
+    background: #f38106;
 }
 
 
