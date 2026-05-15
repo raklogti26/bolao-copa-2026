@@ -172,12 +172,14 @@ footer {
 /* ==================================================
    NAVEGAÇÃO / ABAS PRINCIPAIS
 ================================================== */
-nav {
+
+nav:not(.menu-topo) {
   display: flex;
   gap: 8px;
   margin: 16px 0;
   flex-wrap: wrap;
 }
+
 
 nav button {
   padding: 10px 16px;
@@ -404,6 +406,47 @@ button {
 button:hover {
   background-color: var(--cor-primaria-escura);
 }
+
+
+
+/* ===============================
+   MENU TOPO (CORRIGIDO)
+================================ */
+
+.menu-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* Lado esquerdo */
+.menu-esquerda {
+    display: flex;
+    gap: 10px;
+}
+
+/* Lado direito (empurra mesmo!) */
+.menu-direita {
+    margin-left: auto;
+}
+
+/* Botão topo (Regras / Voltar) */
+.btn-topo {
+    background: var(--cor-primaria);
+    color: #000;
+    padding: 8px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.btn-topo:hover {
+    background: var(--cor-primaria-escura);
+}
+
+
 ====================================================
 Lista de participantes
 ====================================================
