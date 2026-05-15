@@ -26,18 +26,6 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
-  line-height: 1.5;
-}
-
-/* ==================================================
-   LAYOUT
-================================================== */
-header,
-main,
-footer {
-  max-width: 1100px;
-  margin: auto;
-  padding: 16px;
 }
 
 /* ==================================================
@@ -46,6 +34,7 @@ footer {
 header {
   background-color: var(--cor-primaria);
   color: #000;
+  padding: 16px;
 }
 
 header h1 {
@@ -58,42 +47,70 @@ header p {
 }
 
 /* ==================================================
-   MENU TOPO
+   LAYOUT COM SIDEBAR
 ================================================== */
-.menu-topo {
+.container {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: auto;
 }
 
-.menu-esquerda {
+/* SIDEBAR */
+.sidebar {
+  width: 190px;
+  padding: 15px;
+  border-right: 1px solid var(--cor-borda);
   display: flex;
-  gap: 10px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.menu-direita {
-  margin-left: auto;
-}
-
-.btn-topo {
+.sidebar button,
+.sidebar a {
   background: none;
   border: none;
+  text-align: left;
   font-weight: 600;
-  color: #000;
+  color: var(--cor-texto);
+  cursor: pointer;
   text-decoration: none;
+  padding: 5px 0;
 }
 
-.btn-topo:hover {
+.sidebar button:hover,
+.sidebar a:hover {
   text-decoration: underline;
 }
 
+.submenu {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* CONTEÚDO */
+main {
+  flex: 1;
+  padding: 20px;
+  max-width: 100%;
+}
+
+/* SEÇÕES */
+main section {
+  width: 100%;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
 /* ==================================================
-   NAVEGAÇÃO PADRÃO
+   NAVEGAÇÃO INTERNA (RODADAS)
 ================================================== */
 nav:not(.menu-topo) {
   display: flex;
   gap: 10px;
-  margin: 15px 0;
+  margin: 10px 0;
 }
 
 nav button {
@@ -101,7 +118,6 @@ nav button {
   border: none;
   font-weight: 600;
   cursor: pointer;
-  color: var(--cor-texto);
 }
 
 nav button:hover {
@@ -117,41 +133,24 @@ h2 {
 }
 
 h3 {
-  margin: 20px 0 10px;
+  margin: 15px 0 8px;
 }
 
 h4 {
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 /* ==================================================
-   SEÇÕES (SEM BOX PESADO)
-================================================== */
-section {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--cor-borda);
-}
-
-/* ==================================================
-   TEXTO
-================================================== */
-p, li {
-  color: var(--cor-texto-suave);
-}
-
-strong {
-  color: var(--cor-primaria);
-}
-
-/* ==================================================
-   TABELA
+   TABELA DE RANKING (FIXA)
 ================================================== */
 table {
   width: 100%;
+  min-width: 500px;
   border-collapse: collapse;
 }
 
-th, td {
+th,
+td {
   border-bottom: 1px solid var(--cor-borda);
   padding: 10px;
 }
@@ -160,7 +159,7 @@ th {
   font-weight: 600;
 }
 
-/* destaque top 3 */
+/* Destaque TOP 3 */
 tbody tr:nth-child(1) td {
   background-color: rgba(255, 158, 24, 0.15);
 }
@@ -170,7 +169,7 @@ tbody tr:nth-child(2) td {
 }
 
 /* ==================================================
-   LISTAS
+   LISTAS / JOGOS
 ================================================== */
 ul {
   list-style: none;
@@ -180,9 +179,6 @@ li {
   padding: 6px 0;
 }
 
-/* ==================================================
-   JOGOS
-================================================== */
 #gruposContainer > div,
 #eliminatoriasContainer > div {
   margin-bottom: 20px;
@@ -199,13 +195,21 @@ footer {
 }
 
 /* ==================================================
-   ADMIN
+   BOTÃO TOPO (REGRAS / VOLTAR)
 ================================================== */
-main section {
-  padding: 10px 0;
-  border-bottom: 1px solid var(--cor-borda);
+.btn-topo {
+  text-decoration: none;
+  font-weight: 600;
+  color: var(--cor-texto);
 }
 
+.btn-topo:hover {
+  text-decoration: underline;
+}
+
+/* ==================================================
+   ADMIN (mantido compatível)
+================================================== */
 .form-linha {
   display: flex;
   gap: 10px;
@@ -222,64 +226,30 @@ button {
   background-color: var(--cor-primaria);
   border: none;
   cursor: pointer;
-  font-weight: 600;
 }
 
 /* ==================================================
    RESPONSIVO
 ================================================== */
 @media (max-width: 768px) {
-  nav {
-    justify-content: center;
+
+  .container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--cor-borda);
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  main {
+    padding: 10px;
   }
 
   table {
     font-size: 0.85rem;
   }
-}
-/* ===== LAYOUT COM SIDEBAR ===== */
-
-.container {
-    display: flex;
-}
-
-/* SIDEBAR */
-.sidebar {
-    width: 200px;
-    border-right: 1px solid #e5e7eb;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.sidebar button,
-.sidebar a {
-    background: none;
-    border: none;
-    text-align: left;
-    padding: 6px 4px;
-    font-weight: 600;
-    color: #111;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.sidebar button:hover,
-.sidebar a:hover {
-    text-decoration: underline;
-}
-
-/* submenu */
-.submenu {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-}
-
-/* conteúdo */
-main {
-    flex: 1;
-    padding-left: 20px;
 }
