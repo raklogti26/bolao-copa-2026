@@ -1,18 +1,17 @@
 /* ==================================================
-   VARIÁVEIS GLOBAIS (CORES)
+   VARIÁVEIS
 ================================================== */
 :root {
   --cor-primaria: #FF9E18;
   --cor-primaria-escura: #e68900;
-  --cor-fundo: #f5f7fa;
-  --cor-texto: #1f2933;
-  --cor-texto-suave: #4b5563;
-  --cor-borda: #d1d5db;
-  --cor-card: #ffffff;
+  --cor-fundo: #ffffff;
+  --cor-texto: #111;
+  --cor-texto-suave: #666;
+  --cor-borda: #e5e7eb;
 }
 
 /* ==================================================
-   RESET BÁSICO
+   RESET
 ================================================== */
 * {
   box-sizing: border-box;
@@ -20,288 +19,169 @@
   padding: 0;
 }
 
+/* ==================================================
+   BASE (FIFA STYLE)
+================================================== */
 body {
- 
-  font-family: 'Montserrat', Arial, system-ui, sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   background-color: var(--cor-fundo);
   color: var(--cor-texto);
   line-height: 1.5;
-
 }
 
 /* ==================================================
-   LAYOUT GERAL
+   LAYOUT
 ================================================== */
 header,
 main,
 footer {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: auto;
   padding: 16px;
 }
 
-
 /* ==================================================
-   HEADER ESTILO SITE OFICIAL
+   HEADER
 ================================================== */
-
 header {
   background-color: var(--cor-primaria);
   color: #000;
-  padding: 20px 16px;
 }
 
-/* Conteúdo interno do header */
 header h1 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 4px;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
 header p {
-  font-size: 0.85rem;
-  opacity: 0.85;
+  font-size: 0.8rem;
 }
 
-/* MENU PRINCIPAL */
-header + nav {
-  background-color: var(--cor-primaria);
-  padding: 8px 16px 16px;
-  margin: 0 auto;
-  max-width: 1200px;
+/* ==================================================
+   MENU TOPO
+================================================== */
+.menu-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-header + nav button {
-  background: transparent;
+.menu-esquerda {
+  display: flex;
+  gap: 10px;
+}
+
+.menu-direita {
+  margin-left: auto;
+}
+
+.btn-topo {
+  background: none;
   border: none;
-  color: #000;
-  font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 600;
-  padding: 8px 12px;
-  cursor: pointer;
+  color: #000;
+  text-decoration: none;
 }
 
-header + nav button:hover {
+.btn-topo:hover {
   text-decoration: underline;
 }
 
-header + nav button.active {
-  border-bottom: 3px solid #000;
-}
-
-
-/* ===== PÁGINA DE REGRAS ===== */
-
-main {
-    background: #1f1f1f;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-h2 {
-    color: #FF9E18;
-    margin-bottom: 10px;
-}
-
-section {
-    background: #2a2a2a;
-    padding: 20px;
-    border-radius: 16px;
-    margin-bottom: 25px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
-ul li {
-    margin-bottom: 10px;
-    font-size: 15px;
-}
-
-p {
-    font-size: 15px;
-    line-height: 1.5;
-}
-
-strong {
-    color: #00ADBB;
-}
-
-/* HEADER */
-header {
-    background: #000;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 3px solid #FF9E18;
-}
-
-header h1 {
-    margin: 0;
-    color: #fff;
-}
-
-/* FOOTER */
-footer {
-    color: #888;
-}
-
-
-.btn-voltar:hover {
-    background: #008c98;
-}
-
-.btn-voltar {
-    display: inline-block;
-    margin-top: 20px;
-    padding: 10px 15px;
-    background: #FF9E18;
-    color: #fff;
-    border-radius: 10px;
-    text-decoration: none;
-}
-
-.btn-voltar:hover {
-    background: #f38106;
-}
-
-
 /* ==================================================
-   NAVEGAÇÃO / ABAS PRINCIPAIS
+   NAVEGAÇÃO PADRÃO
 ================================================== */
-
 nav:not(.menu-topo) {
   display: flex;
-  gap: 8px;
-  margin: 16px 0;
-  flex-wrap: wrap;
+  gap: 10px;
+  margin: 15px 0;
 }
 
-
 nav button {
-  padding: 10px 16px;
-  border: 1px solid var(--cor-borda);
-  background-color: var(--cor-card);
-  border-radius: 6px;
-  cursor: pointer;
+  background: none;
+  border: none;
   font-weight: 600;
+  cursor: pointer;
   color: var(--cor-texto);
 }
 
 nav button:hover {
-  background-color: var(--cor-primaria);
-  color: #000;
-}
-
-nav button.active {
-  background-color: var(--cor-primaria);
-  color: #000;
+  text-decoration: underline;
 }
 
 /* ==================================================
    TÍTULOS
 ================================================== */
 h2 {
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+  font-weight: 600;
 }
 
 h3 {
-  margin: 16px 0 8px;
-  color: var(--cor-primaria);
+  margin: 20px 0 10px;
 }
 
 h4 {
-  margin-top: 12px;
+  margin-top: 15px;
+}
+
+/* ==================================================
+   SEÇÕES (SEM BOX PESADO)
+================================================== */
+section {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* ==================================================
+   TEXTO
+================================================== */
+p, li {
+  color: var(--cor-texto-suave);
+}
+
+strong {
   color: var(--cor-primaria);
 }
 
 /* ==================================================
-   TABELA DE RANKING
+   TABELA
 ================================================== */
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: var(--cor-card);
 }
 
-th,
-td {
-  border: 1px solid var(--cor-borda);
+th, td {
+  border-bottom: 1px solid var(--cor-borda);
   padding: 10px;
-  text-align: left;
 }
 
 th {
-  background-color: #e5e7eb;
+  font-weight: 600;
 }
 
-/* Destaque TOP 3 */
+/* destaque top 3 */
 tbody tr:nth-child(1) td {
-  background-color: rgba(255, 158, 24, 0.25);
-}
-
-tbody tr:nth-child(2) td {
   background-color: rgba(255, 158, 24, 0.15);
 }
 
-tbody tr:nth-child(3) td {
+tbody tr:nth-child(2) td {
   background-color: rgba(255, 158, 24, 0.08);
 }
 
-
 /* ==================================================
-   CHAVE ELIMINATÓRIA – LAYOUT EM COLUNAS
-================================================== */
-
-.chave-container {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-  margin-top: 20px;
-}
-
-.chave-coluna h4 {
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-.chave-coluna > div > div {
-  background-color: var(--cor-card);
-  border: 1px solid var(--cor-borda);
-  border-left: 4px solid var(--cor-primaria);
-  border-radius: 6px;
-  padding: 8px 12px;
-  margin-bottom: 12px;
-  font-size: 0.9rem;
-}
-
-
-
-
-
-
-/* ==================================================
-   RODADAS / JOGOS
+   LISTAS
 ================================================== */
 ul {
   list-style: none;
 }
 
 li {
-  background-color: var(--cor-card);
-  border: 1px solid var(--cor-borda);
-  border-left: 4px solid var(--cor-primaria);
-  border-radius: 6px;
-  padding: 8px 12px;
-  margin-bottom: 6px;
-  font-size: 0.95rem;
+  padding: 6px 0;
 }
 
 /* ==================================================
-   CARDS DE FASE (GRUPOS / ELIMINATÓRIAS)
+   JOGOS
 ================================================== */
 #gruposContainer > div,
 #eliminatoriasContainer > div {
@@ -309,168 +189,51 @@ li {
 }
 
 /* ==================================================
-   RODAPÉ
+   FOOTER
 ================================================== */
 footer {
-  margin-top: 32px;
-  font-size: 0.85rem;
+  margin-top: 30px;
+  font-size: 0.8rem;
   text-align: center;
   color: var(--cor-texto-suave);
 }
 
-/* MENU TOPO */
-.menu-topo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
-
-/* Lado esquerdo */
-.menu-esquerda button {
-    margin-right: 10px;
-}
-
-/* Botão lado direito */
-.menu-direita {
-    display: flex;
-    justify-content: flex-end;
-}
-
-/* Botão padrão topo */
-.btn-topo {
-    background: #FF9E18;
-    color: #000;
-    padding: 8px 14px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-.btn-topo:hover {
-    background: #ffb84d;
-}
-``
-
 /* ==================================================
-   RESPONSIVO (MOBILE)
+   ADMIN
 ================================================== */
-@media (max-width: 768px) {
-  nav {
-    justify-content: center;
-  }
-
-  table,
-  th,
-  td {
-    font-size: 0.85rem;
-  }
-}
-/* =====================================
-   ADMIN - FORMULÁRIOS
-===================================== */
-
 main section {
-  background: var(--cor-card);
-  padding: 20px;
-  border-radius: 6px;
-  border: 1px solid var(--cor-borda);
-  margin-bottom: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cor-borda);
 }
 
 .form-linha {
   display: flex;
   gap: 10px;
   margin-bottom: 10px;
-  flex-wrap: wrap;
 }
 
 input, select {
-  padding: 10px;
+  padding: 8px;
   border: 1px solid var(--cor-borda);
-  border-radius: 4px;
-  min-width: 220px;
 }
 
 button {
-  padding: 8px 14px;
+  padding: 6px 10px;
   background-color: var(--cor-primaria);
   border: none;
-  border-radius: 4px;
-  color: #000;
+  cursor: pointer;
   font-weight: 600;
-  cursor: pointer;
-  margin-top: 8px;
 }
 
-button:hover {
-  background-color: var(--cor-primaria-escura);
-}
+/* ==================================================
+   RESPONSIVO
+================================================== */
+@media (max-width: 768px) {
+  nav {
+    justify-content: center;
+  }
 
-
-
-/* ===============================
-   MENU TOPO (CORRIGIDO)
-================================ */
-
-.menu-topo {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-/* Lado esquerdo */
-.menu-esquerda {
-    display: flex;
-    gap: 10px;
-}
-
-/* Lado direito (empurra mesmo!) */
-.menu-direita {
-    margin-left: auto;
-}
-
-/* Botão topo (Regras / Voltar) */
-.btn-topo {
-    background: var(--cor-primaria);
-    color: #000;
-    padding: 8px 14px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    white-space: nowrap;
-}
-
-.btn-topo:hover {
-    background: var(--cor-primaria-escura);
-}
-
-
-====================================================
-Lista de participantes
-====================================================
-
-#listaParticipantes {
-  margin-top: 15px;
-  list-style: none;
-  padding: 0;
-}
-
-#listaParticipantes li {
-  display: flex;
-  justify-content: space-between;
-  background: var(--cor-card);
-  padding: 8px 12px;
-  border-radius: 4px;
-  margin-bottom: 6px;
-}
-
-#listaParticipantes button {
-  background: #ff4d4d;
-  border: none;
-  color: #fff;
-  padding: 4px 8px;
-  cursor: pointer;
-  border-radius: 4px;
+  table {
+    font-size: 0.85rem;
+  }
 }
