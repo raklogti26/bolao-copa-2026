@@ -316,6 +316,40 @@ footer {
   color: var(--cor-texto-suave);
 }
 
+/* MENU TOPO */
+.menu-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* Lado esquerdo */
+.menu-esquerda button {
+    margin-right: 10px;
+}
+
+/* Botão lado direito */
+.menu-direita {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* Botão padrão topo */
+.btn-topo {
+    background: #FF9E18;
+    color: #000;
+    padding: 8px 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-topo:hover {
+    background: #ffb84d;
+}
+``
+
 /* ==================================================
    RESPONSIVO (MOBILE)
 ================================================== */
