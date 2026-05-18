@@ -294,19 +294,8 @@ main button {
     padding: 15px;
   }
 
-  table {
-  }
-
-
-.imagem-logo {
-
- height: 120px;
-    margin-bottom: 60px;
-
-    background-image: url("../img/logo.png");
-    background-size: 120;
-    background-repeat: no-repeat;
-    background-position: center;
+  table 
+  
 
 
 }
