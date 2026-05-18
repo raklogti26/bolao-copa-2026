@@ -10,7 +10,7 @@ body {
 
 
 .top-header {
-  background: #111;
+  background: url("../img/head5.jpg") right center / cover no-repeat;
   color: #fff;
   padding: 25px;
   margin-bottom: 25px;
