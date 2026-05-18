@@ -280,25 +280,28 @@ main button {
 ================================================== */
 @media (max-width: 768px) {
 
-  .container {
+  
+.container {
     flex-direction: column;
   }
 
-  .sidebar {
-    width: 100%;
-    border-right: none;
-    border-bottom: 1px solid #ddd;
-  }
-
   main {
-    padding: 15px;
+    order: 1; /* HEADER primeiro */
   }
 
-  table 
-  
+  .sidebar {
+    order: 2; /* menu depois */
+  }
 
+  /* 🔥 importante: separar header do resto */
+
+  #aba-ranking,
+  #aba-rodadas {
+    order: 3;
+  }
 
 }
+
 
    
 
