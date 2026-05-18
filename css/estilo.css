@@ -21,11 +21,21 @@ body {
   /* 🔥 IMAGEM DE FUNDO */
   background-image: url("../img/head3.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: 85% center;
 
   /* 🔥 OVERLAY ESCURO */
   position: relative;
   color: #fff;
+}
+
+@media (max-width: 768px) {
+  .top-header {
+    background-position: right center;
+
+    /* 👇 melhora o comportamento */
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
 
 
