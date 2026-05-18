@@ -25,20 +25,44 @@
 <div class="container">
 
     <!-- SIDEBAR -->
-    <aside class="sidebar">
 
 
-<button class="ativo" onclick="mostrarAba('ranking')">🏆 Ranking</button>
+<aside class="sidebar">
 
-<button onclick="mostrarAba('rodadas')">📅 Rodadas</button>
+    <div class="sidebar-topo">
+        <h2>🏆 Bolão</h2>
+        <span>Copa 2026</span>
+    </div>
 
-<div class="submenu">
-    <button onclick="mostrarRodada('grupos')">• Grupos</button>
-    <button onclick="mostrarRodada('eliminatorias')">• Eliminatórias</button>
-</div>
+    <div class="menu">
 
-<a href="regras.html">📋 Regras</a>
+        <button class="menu-item ativo" onclick="mostrarAba('ranking')">
+            🏆 Ranking Geral
+        </button>
 
+        <button class="menu-item" onclick="mostrarAba('rodadas')">
+            📅 Rodadas
+        </button>
+
+        <div class="submenu">
+            <button onclick="mostrarRodada('grupos')">
+                • Grupos
+            </button>
+            <button onclick="mostrarRodada('eliminatorias')">
+                • Eliminatórias
+            </button>
+        </div>
+
+    </div>
+
+    <div class="menu-bottom">
+        <a href="regras.html">📋 Regras</a>
+    </div>
+
+</aside>
+
+
+    
         
     </aside>
 
