@@ -285,12 +285,16 @@ button {
   table {
   }
 
-     .imagem-logo {
+
+.imagem-logo {
     height: 90px;
-    background-image: url("/img/logo.png");
+    margin-bottom: 80px;
+
+    background-image: url("../img/logo.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: left center;
 }
+
    
 
