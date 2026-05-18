@@ -10,7 +10,7 @@ body {
 
 
 .top-header {
-  background: url("../img/head5.jpg") right center / cover no-repeat;
+  background: #111;
   color: #fff;
   padding: 25px;
   margin-bottom: 25px;
@@ -68,109 +68,65 @@ header p {
   min-height: calc(100vh - 80px);
 }
 
-/* ===== SIDEBAR BASE ===== */
+/* ==================================================
+   SIDEBAR
+================================================== */
+.sidebar {
+
 
 .sidebar {
-    width: 230px;
-    background: #fff;
-    border-right: 1px solid #e5e7eb;
-
-    display: flex;
-    flex-direction: column;
-    padding: 20px 15px;
+  width: 220px;
+  min-width: 220px;
+  background: #111;              /* fundo escuro */
+  color: #fff;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* ===== TOPO ===== */
-
-.sidebar-topo {
-    margin-bottom: 80px;
+/* Itens */
+.sidebar button,
+.sidebar a {
+  color: #bbb;
+  font-weight: 500;
+  background: none;
+  border: none;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
 }
 
-.sidebar-topo h2 {
-    margin: 0;
-    font-size: 1.4rem;
+/* Hover */
+.sidebar button:hover,
+.sidebar a:hover {
+  background: rgba(255,255,255,0.08);
+  color: #fff;
 }
 
-.sidebar-topo span {
-    font-size: 0.85rem;
-    color: #666;
+/* ITEM ATIVO */
+.sidebar .ativo {
+  background: #FF9E18;
+  color: #000;
+  font-weight: 600;
 }
 
-
-.imagem-logo {
-    height: 80px;
-    margin-bottom: 60px;
-
-    background-image: url("../img/logo.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: left center;
-}
-
-
-/* ===== MENU ===== */
-
-.menu {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.menu-item {
-    background: none;
-    border: none;
-    text-align: left;
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-weight: 600;
-    color: #333;
-    cursor: pointer;
-}
-
-/* hover */
-.menu-item:hover {
-    background: #f3f4f6;
-}
-
-/* ✅ ATIVO (SEU PADRÃO A) */
-.menu-item.ativo {
-    background: #2e7d32; /* depois trocamos a cor */
-    color: #fff;
-}
-
-/* ===== SUBMENU ===== */
-
+/* submenu */
 .submenu {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
 
+/* texto menor submenu */
 .submenu button {
-    background: none;
-    border: none;
-    text-align: left;
-    font-size: 0.9rem;
-    color: #555;
-    cursor: pointer;
+  font-size: 0.9rem;
 }
 
-/* ===== ESPAÇAMENTO + REGRAS (B) ===== */
-
-.menu-bottom {
-    margin-top: 40px;
-    font-weight: 600;
-}
-
-.menu-bottom a {
-    text-decoration: none;
-    color: #444;
-}
-
-.menu-bottom a:hover {
-    text-decoration: underline;
-}
 
 /* ==================================================
    ÁREA DE CONTEÚDO
@@ -267,7 +223,7 @@ input, select {
   border: 1px solid #ccc;
 }
 
-main button {
+button {
   padding: 6px 10px;
   background: #FF9E18;
   border: none;
@@ -280,39 +236,57 @@ main button {
 ================================================== */
 @media (max-width: 768px) {
 
-
- .container {
+  .container {
     flex-direction: column;
   }
 
-  .top-header {
-    order: 1;
-  }
-
   .sidebar {
-    order: 2;
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
   }
 
-  main > section {
-    order: 3;
+  main {
+    padding: 15px;
   }
 
+  table {
+    font-size: 0.9rem;
+  }
 }
 
-
-table {
-  display: table !important;
-}
-
-tr {
-  display: table-row !important;
-}
-
-td {
-  display: table-cell !important;
-  color: #111 !important;
-}
-
-
+======================================================
+   novo top header
+======================================================
    
+.top-header {
+  background: #111;
+  color: #fff;
+  padding: 25px;
+  margin-bottom: 25px;
 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.top-header p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.header-info {
+  text-align: right;
+}
+
+/* destaque tempo */
+.tempo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #FF9E18;
+}
