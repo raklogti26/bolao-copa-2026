@@ -9,34 +9,41 @@ body {
 }
 
 
-.top-header {
 
- padding: 25px;
+.top-header {
+  padding: 25px;
   margin-bottom: 25px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  /* 🔥 IMAGEM DE FUNDO */
   background-image: url("../img/head3.jpg");
   background-size: cover;
-  background-position: 85% center;
 
-  /* 🔥 OVERLAY ESCURO */
+  /* 🔥 fixo e estável */
+  background-position: right center;
+
   position: relative;
   color: #fff;
 }
 
+
 @media (max-width: 768px) {
   .top-header {
-    background-position: right center;
-
-    /* 👇 melhora o comportamento */
     flex-direction: column;
     align-items: flex-start;
+    gap: 15px;
+
+    /* 🔥 CORREÇÃO REAL DO MOBILE */
+    background-size: cover;
+    background-position: right top;
   }
-}
+
+  .header-info {
+    text-align: left;
+  }
+
 
 
 .top-header h1 {
