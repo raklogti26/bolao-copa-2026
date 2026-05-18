@@ -300,13 +300,13 @@ button {
 
 .imagem-logo {
 
- height: 80px;
+ height: 120px;
     margin-bottom: 60px;
 
     background-image: url("../img/logo.png");
-    background-size: contain;
+    background-size: 120;
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: center;
 
 
 }
