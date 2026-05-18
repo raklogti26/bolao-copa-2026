@@ -10,15 +10,24 @@ body {
 
 
 .top-header {
-  background: #111;
-  color: #fff;
-  padding: 25px;
+
+ padding: 25px;
   margin-bottom: 25px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  /* 🔥 IMAGEM DE FUNDO */
+  background-image: url("../img/head2.jpg");
+  background-size: cover;
+  background-position: center;
+
+  /* 🔥 OVERLAY ESCURO */
+  position: relative;
+  color: #fff;
 }
+
 
 .top-header h1 {
   font-size: 1.8rem;
