@@ -96,6 +96,18 @@ header p {
     color: #666;
 }
 
+
+.imagem-logo {
+    height: 80px;
+    margin-bottom: 60px;
+
+    background-image: url("../img/logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+}
+
+
 /* ===== MENU ===== */
 
 .menu {
