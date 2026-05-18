@@ -8,6 +8,39 @@ body {
   color: #111;
 }
 
+
+.top-header {
+  background: #111;
+  color: #fff;
+  padding: 25px;
+  margin-bottom: 25px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+}
+
+.top-header p {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.header-info {
+  text-align: right;
+}
+
+/* destaque tempo */
+.tempo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #FF9E18;
+}
+
 /* ==================================================
    HEADER
 ================================================== */
