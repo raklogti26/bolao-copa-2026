@@ -135,19 +135,31 @@ firebase.initializeApp(firebaseConfig);
 </script>
 
 <script>
+
 function mostrarAba(aba) {
+
+    // esconder abas
     document.getElementById("aba-ranking").style.display = "none";
     document.getElementById("aba-rodadas").style.display = "none";
 
+    // mostrar a selecionada
     document.getElementById("aba-" + aba).style.display = "block";
+
+    // 🔥 remover ativo de todos
+    document.querySelectorAll('.menu-item').forEach(btn => {
+        btn.classList.remove('ativo');
+    });
+
+    // 🔥 ativar o correto
+    if (aba === "ranking") {
+        document.querySelectorAll('.menu-item')[0].classList.add("ativo");
+    }
+
+    if (aba === "rodadas") {
+        document.querySelectorAll('.menu-item')[1].classList.add("ativo");
+    }
 }
 
-function mostrarRodada(tipo) {
-    document.getElementById("rodada-grupos").style.display = "none";
-    document.getElementById("rodada-eliminatorias").style.display = "none";
-
-    document.getElementById("rodada-" + tipo).style.display = "block";
-}
 </script>
 
 <script src="js/bolao.js"></script>
