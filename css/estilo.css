@@ -39,37 +39,61 @@ header p {
    SIDEBAR
 ================================================== */
 .sidebar {
+
+
+.sidebar {
   width: 220px;
   min-width: 220px;
-  border-right: 1px solid #ddd;
-  padding: 15px;
-  box-sizing: border-box;
+  background: #111;              /* fundo escuro */
+  color: #fff;
+  padding: 20px 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-/* Botões */
+/* Itens */
 .sidebar button,
 .sidebar a {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 8px 0;
+  color: #bbb;
+  font-weight: 500;
   background: none;
   border: none;
-  font-weight: 600;
+  text-align: left;
+  padding: 10px 12px;
+  border-radius: 8px;
   cursor: pointer;
-  color: #111;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
+/* Hover */
 .sidebar button:hover,
 .sidebar a:hover {
-  text-decoration: underline;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
 }
 
-/* Submenu */
+/* ITEM ATIVO */
+.sidebar .ativo {
+  background: #FF9E18;
+  color: #000;
+  font-weight: 600;
+}
+
+/* submenu */
 .submenu {
   margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
 }
+
+/* texto menor submenu */
+.submenu button {
+  font-size: 0.9rem;
+}
+
 
 /* ==================================================
    ÁREA DE CONTEÚDO
