@@ -68,65 +68,97 @@ header p {
   min-height: calc(100vh - 80px);
 }
 
-/* ==================================================
-   SIDEBAR
-================================================== */
-.sidebar {
-
+/* ===== SIDEBAR BASE ===== */
 
 .sidebar {
-  width: 220px;
-  min-width: 220px;
-  background: #111;              /* fundo escuro */
-  color: #fff;
-  padding: 20px 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    width: 230px;
+    background: #fff;
+    border-right: 1px solid #e5e7eb;
+
+    display: flex;
+    flex-direction: column;
+    padding: 20px 15px;
 }
 
-/* Itens */
-.sidebar button,
-.sidebar a {
-  color: #bbb;
-  font-weight: 500;
-  background: none;
-  border: none;
-  text-align: left;
-  padding: 10px 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s ease;
+/* ===== TOPO ===== */
+
+.sidebar-topo {
+    margin-bottom: 30px;
 }
 
-/* Hover */
-.sidebar button:hover,
-.sidebar a:hover {
-  background: rgba(255,255,255,0.08);
-  color: #fff;
+.sidebar-topo h2 {
+    margin: 0;
+    font-size: 1.4rem;
 }
 
-/* ITEM ATIVO */
-.sidebar .ativo {
-  background: #FF9E18;
-  color: #000;
-  font-weight: 600;
+.sidebar-topo span {
+    font-size: 0.85rem;
+    color: #666;
 }
 
-/* submenu */
+/* ===== MENU ===== */
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.menu-item {
+    background: none;
+    border: none;
+    text-align: left;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    color: #333;
+    cursor: pointer;
+}
+
+/* hover */
+.menu-item:hover {
+    background: #f3f4f6;
+}
+
+/* ✅ ATIVO (SEU PADRÃO A) */
+.menu-item.ativo {
+    background: #2e7d32; /* depois trocamos a cor */
+    color: #fff;
+}
+
+/* ===== SUBMENU ===== */
+
 .submenu {
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
-/* texto menor submenu */
 .submenu button {
-  font-size: 0.9rem;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 0.9rem;
+    color: #555;
+    cursor: pointer;
 }
 
+/* ===== ESPAÇAMENTO + REGRAS (B) ===== */
+
+.menu-bottom {
+    margin-top: 40px;
+    font-weight: 600;
+}
+
+.menu-bottom a {
+    text-decoration: none;
+    color: #444;
+}
+
+.menu-bottom a:hover {
+    text-decoration: underline;
+}
 
 /* ==================================================
    ÁREA DE CONTEÚDO
