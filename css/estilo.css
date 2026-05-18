@@ -1,113 +1,240 @@
-/* ========================
-   BASE
-======================== */
+/* ==================================================
+   VARIÁVEIS
+================================================== */
+:root {
+  --cor-primaria: #FF9E18;
+  --cor-primaria-escura: #e68900;
+  --cor-fundo: #ffffff;
+  --cor-texto: #111;
+  --cor-texto-suave: #666;
+  --cor-borda: #e5e7eb;
+}
+
+/* ==================================================
+   RESET
+================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ==================================================
+   BASE (FIFA STYLE)
+================================================== */
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
-  margin: 0;
-  background: #ffffff;
-  color: #111;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  line-height: 1.5;
 }
 
-/* ========================
-   HEADER
-======================== */
-header {
-  background: #FF9E18;
-  padding: 12px 16px;
-}
-
-/* ========================
+/* ==================================================
    LAYOUT
-======================== */
-.container {
-  display: flex;
-  width: 100%;
-  min-height: 100vh;
+================================================== */
+header,
+main,
+footer {
+  max-width: 1100px;
+  margin: auto;
+  padding: 16px;
 }
 
-/* ========================
-   SIDEBAR
-======================== */
-.sidebar {
-  width: 220px;
-  border-right: 1px solid #ddd;
-  padding: 15px;
+/* ==================================================
+   HEADER
+================================================== */
+header {
+  background-color: var(--cor-primaria);
+  color: #000;
 }
 
-.sidebar button,
-.sidebar a {
-  display: block;
-  width: 100%;
-  text-align: left;
-  border: none;
-  background: none;
-  padding: 8px 0;
+header h1 {
+  font-size: 1.3rem;
   font-weight: 600;
-  cursor: pointer;
-  color: #111;
 }
 
-.sidebar button:hover,
-.sidebar a:hover {
+header p {
+  font-size: 0.8rem;
+}
+
+/* ==================================================
+   MENU TOPO
+================================================== */
+.menu-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu-esquerda {
+  display: flex;
+  gap: 10px;
+}
+
+.menu-direita {
+  margin-left: auto;
+}
+
+.btn-topo {
+  background: none;
+  border: none;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+}
+
+.btn-topo:hover {
   text-decoration: underline;
 }
 
-.submenu {
-  margin-left: 10px;
+/* ==================================================
+   NAVEGAÇÃO PADRÃO
+================================================== */
+nav:not(.menu-topo) {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
 }
 
-/* ========================
-   CONTEÚDO
-======================== */
-main {
-  flex: 1;
-  padding: 20px;
-  max-width: 900px;
+nav button {
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  color: var(--cor-texto);
 }
 
-/* ========================
-   TABELA (FIX CRÍTICO)
-======================== */
+nav button:hover {
+  text-decoration: underline;
+}
+
+/* ==================================================
+   TÍTULOS
+================================================== */
+h2 {
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+h3 {
+  margin: 20px 0 10px;
+}
+
+h4 {
+  margin-top: 15px;
+}
+
+/* ==================================================
+   SEÇÕES (SEM BOX PESADO)
+================================================== */
+section {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+/* ==================================================
+   TEXTO
+================================================== */
+p, li {
+  color: var(--cor-texto-suave);
+}
+
+strong {
+  color: var(--cor-primaria);
+}
+
+/* ==================================================
+   TABELA
+================================================== */
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
-}
-
-thead {
-  border-bottom: 1px solid #ccc;
 }
 
 th, td {
+  border-bottom: 1px solid var(--cor-borda);
   padding: 10px;
-  text-align: left;
 }
 
-/* ✅ MUITO IMPORTANTE */
-tbody {
-  display: table-row-group;
+th {
+  font-weight: 600;
 }
 
-/* ========================
-   SEÇÕES
-======================== */
-section {
+/* destaque top 3 */
+tbody tr:nth-child(1) td {
+  background-color: rgba(255, 158, 24, 0.15);
+}
+
+tbody tr:nth-child(2) td {
+  background-color: rgba(255, 158, 24, 0.08);
+}
+
+/* ==================================================
+   LISTAS
+================================================== */
+ul {
+  list-style: none;
+}
+
+li {
+  padding: 6px 0;
+}
+
+/* ==================================================
+   JOGOS
+================================================== */
+#gruposContainer > div,
+#eliminatoriasContainer > div {
   margin-bottom: 20px;
 }
 
-/* ========================
-   TÍTULOS
-======================== */
-h2 {
-  margin-bottom: 15px;
+/* ==================================================
+   FOOTER
+================================================== */
+footer {
+  margin-top: 30px;
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--cor-texto-suave);
 }
 
-/* ========================
-   FOOTER
-======================== */
-footer {
-  text-align: center;
-  margin-top: 30px;
-  color: #666;
+/* ==================================================
+   ADMIN
+================================================== */
+main section {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.form-linha {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+input, select {
+  padding: 8px;
+  border: 1px solid var(--cor-borda);
+}
+
+button {
+  padding: 6px 10px;
+  background-color: var(--cor-primaria);
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* ==================================================
+   RESPONSIVO
+================================================== */
+@media (max-width: 768px) {
+  nav {
+    justify-content: center;
+  }
+
+  table {
+    font-size: 0.85rem;
+  }
 }
 
