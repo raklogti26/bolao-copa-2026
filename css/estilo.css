@@ -300,6 +300,19 @@ main button {
 }
 
 
+table {
+  display: table !important;
+}
+
+tr {
+  display: table-row !important;
+}
+
+td {
+  display: table-cell !important;
+  color: #111 !important;
+}
+
 
    
 
