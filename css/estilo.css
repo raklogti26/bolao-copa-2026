@@ -9,42 +9,16 @@ body {
 }
 
 
-
 .top-header {
+  background: #111;
+  color: #fff;
   padding: 25px;
   margin-bottom: 25px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  background-image: url("../img/head5.jpg");
-  background-size: cover;
-
-  /* 🔥 fixo e estável */
-  background-position: right center;
-
-  position: relative;
-  color: #fff;
 }
-
-
-@media (max-width: 768px) {
-  .top-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 15px;
-
-    /* 🔥 CORREÇÃO REAL DO MOBILE */
-    background-size: cover;
-    background-position: right top;
-  }
-
-  .header-info {
-    text-align: left;
-  }
-
-
 
 .top-header h1 {
   font-size: 1.8rem;
