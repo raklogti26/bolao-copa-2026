@@ -313,6 +313,58 @@ td {
   color: #111 !important;
 }
 
+/* ==================================================
+   REGRAS - BLOCOS VISUAIS (MODELO B)
+================================================== */
+
+.bloco-regra {
+  position: relative;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  overflow: hidden;
+
+  /* 🔥 imagem de fundo (troque pelo caminho real) */
+  background-image: url("../img/bkg1.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* 🔥 overlay escuro (essencial pra leitura) */
+.bloco-regra::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6); /* controla a escuridão */
+}
+
+/* 🔥 conteúdo (texto acima do overlay) */
+.conteudo-regra {
+  position: relative;
+  padding: 25px;
+  color: #fff;
+}
+
+/* títulos */
+.conteudo-regra h2 {
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+/* listas */
+.conteudo-regra ul {
+  padding-left: 18px;
+}
+
+.conteudo-regra li {
+  margin-bottom: 8px;
+}
+
+/* parágrafos */
+.conteudo-regra p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
 
    
 
