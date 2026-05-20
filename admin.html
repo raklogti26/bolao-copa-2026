@@ -15,54 +15,42 @@
 
 <body class="admin">
 
-<!-- HEADER -->
+<!-- FAIXA LARANJA -->
 <header></header>
 
-<!-- CONTAINER CORRETO -->
 <div class="container">
 
-    <!-- SIDEBAR -->
+    <!-- ✅ MENU LATERAL DO ADMIN -->
     <aside class="sidebar">
-       
- <div class="menu">
+        <div class="menu">
 
-        <a href="index.html" class="menu-item">
-            🏆 Ranking
-        </a>
+            <button class="menu-item ativo" onclick="mostrarAba('participantes')">
+                👥 Participantes
+            </button>
 
-        <a href="regras.html" class="menu-item">
-            📋 Regras
-        </a>
+            <button class="menu-item" onclick="mostrarAba('palpites')">
+                🎯 Palpites
+            </button>
 
-        <div class="menu-item ativo">⚙️ Admin</div>
+            <button class="menu-item" onclick="mostrarAba('resultados')">
+                ⚽ Resultados
+            </button>
 
-        <!-- SUBMENU ADMIN -->
-       
- <div class="menu">
-
-        <button class="menu-item ativo" onclick="mostrarAba('participantes')">
-            👥 Participantes
-        </button>
-
-        <button class="menu-item" onclick="mostrarAba('palpites')">
-            🎯 Palpites
-        </button>
-
-        <button class="menu-item" onclick="mostrarAba('resultados')">
-            ⚽ Resultados
-        </button>
-
-    </div>
-
-
+        </div>
     </aside>
 
-    <!-- CONTEÚDO -->
+    <!-- ✅ CONTEÚDO -->
     <main>
 
-       document.querySelectorAll('nav .menu-item')
+        <!-- ✅ TOP HEADER PADRÃO -->
+        <div class="top-header">
+            <div class="header-conteudo">
+                <h1>ADMINISTRAÇÃO DO BOLÃO</h1>
+                <p>Gerencie participantes, palpites e resultados</p>
+            </div>
+        </div>
 
-        <!-- PARTICIPANTES -->
+        <!-- ✅ PARTICIPANTES -->
         <section id="aba-participantes">
             <h2>Participantes</h2>
 
@@ -72,7 +60,7 @@
             <ul id="listaParticipantes"></ul>
         </section>
 
-        <!-- PALPITES -->
+        <!-- ✅ PALPITES -->
         <section id="aba-palpites" style="display:none;">
             <h2>Palpites</h2>
 
@@ -84,7 +72,7 @@
             <button onclick="salvarPalpites()">Salvar Palpites</button>
         </section>
 
-        <!-- RESULTADOS -->
+        <!-- ✅ RESULTADOS -->
         <section id="aba-resultados" style="display:none;">
             <h2>Resultados dos Jogos</h2>
 
@@ -99,36 +87,31 @@
 
 // FIREBASE
 const firebaseConfig = {
-  apiKey: "AIzaSyA65IJsycu-tBDu1ZJ2FDXWSRoxetq091I",
+  apiKey: "AIzaSy...",
   authDomain: "bolao-copa-2026-b39f1.firebaseapp.com",
   databaseURL: "https://bolao-copa-2026-b39f1-default-rtdb.firebaseio.com",
   projectId: "bolao-copa-2026-b39f1",
-  storageBucket: "bolao-copa-2026-b39f1.firebasestorage.app",
-  messagingSenderId: "47483489037",
-  appId: "1:47483489037:web:dd956178aa5eaf1e677e44"
 };
 
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-// ABAS
+// ✅ TROCA DE ABAS + ATIVO
+function mostrarAba(aba) {
 
- const abas = ["participantes", "palpites", "resultados"];
+    const abas = ["participantes", "palpites", "resultados"];
 
-    // esconder todas
     abas.forEach(a => {
         document.getElementById("aba-" + a).style.display = "none";
     });
 
-    // mostrar selecionada
     document.getElementById("aba-" + aba).style.display = "block";
 
-    // remover ativo de todos os botões da sidebar
+    // atualizar botão ativo
     document.querySelectorAll('.sidebar .menu-item').forEach(btn => {
         btn.classList.remove('ativo');
     });
 
-    // ativar o botão clicado
     if (aba === "participantes") {
         document.querySelectorAll('.sidebar .menu-item')[0].classList.add("ativo");
     }
@@ -141,7 +124,6 @@ const db = firebase.database();
         document.querySelectorAll('.sidebar .menu-item')[2].classList.add("ativo");
     }
 
-    // manter lógica existente
     if (aba === "palpites") {
         carregarParticipantesSelect();
         carregarPalpites();
@@ -190,134 +172,9 @@ function removerParticipante(nome) {
     carregarParticipantes();
 }
 
-// RESULTADOS
-const jogos = [
-    { id: "J1", selecao1: "Brasil", selecao2: "Japão" },
-    { id: "J2", selecao1: "Argentina", selecao2: "Canadá" }
-];
-
-function carregarJogos() {
-    const container = document.getElementById("listaJogos");
-    container.innerHTML = "";
-
-    jogos.forEach(jogo => {
-        const div = document.createElement("div");
-
-        div.innerHTML = `
-            <strong>${jogo.selecao1} x ${jogo.selecao2}</strong><br>
-            <input type="number" id="g1-${jogo.id}" placeholder="0" style="width:50px;">
-            x
-            <input type="number" id="g2-${jogo.id}" placeholder="0" style="width:50px;">
-            <button onclick="salvarResultado('${jogo.id}')">Salvar</button>
-            <hr>
-        `;
-
-        container.appendChild(div);
-    });
-}
-
-function salvarResultado(jogoId) {
-    const g1 = document.getElementById("g1-" + jogoId).value;
-    const g2 = document.getElementById("g2-" + jogoId).value;
-
-    if (g1 === "" || g2 === "") {
-        alert("Preencha os dois placares");
-        return;
-    }
-
-    const jogo = jogos.find(j => j.id === jogoId);
-
-    db.ref("jogos/" + jogoId).once("value").then(snap => {
-        const dados = snap.val();
-
-        if (dados && dados.finalizado) {
-            alert("Este jogo já está finalizado.");
-            return;
-        }
-
-        db.ref("jogos/" + jogoId).set({
-            selecao1: jogo.selecao1,
-            selecao2: jogo.selecao2,
-            gols1: parseInt(g1),
-            gols2: parseInt(g2),
-            finalizado: true
-        });
-
-        alert("Resultado salvo ✅");
-    });
-}
-
-// PALPITES
-const jogosPalpites = [
-    { id: "J1", selecao1: "Brasil", selecao2: "Japão" },
-    { id: "J2", selecao1: "Argentina", selecao2: "Canadá" }
-];
-
-function carregarParticipantesSelect() {
-    const select = document.getElementById("selectParticipante");
-    select.innerHTML = "";
-
-    db.ref("participantes").once("value", snapshot => {
-        const dados = snapshot.val();
-        if (!dados) return;
-
-        for (let key in dados) {
-            const option = document.createElement("option");
-            option.value = key;
-            option.textContent = dados[key].nome;
-            select.appendChild(option);
-        }
-    });
-}
-
-function carregarPalpites() {
-    const container = document.getElementById("listaPalpites");
-    container.innerHTML = "";
-
-    jogosPalpites.forEach(jogo => {
-        const div = document.createElement("div");
-
-        div.innerHTML = `
-            <strong>${jogo.selecao1} x ${jogo.selecao2}</strong><br>
-            <input type="number" id="p1-${jogo.id}" placeholder="0" style="width:50px;">
-            x
-            <input type="number" id="p2-${jogo.id}" placeholder="0" style="width:50px;">
-            <hr>
-        `;
-
-        container.appendChild(div);
-    });
-}
-
-function salvarPalpites() {
-    const participante = document.getElementById("selectParticipante").value;
-
-    if (!participante) {
-        alert("Selecione um participante");
-        return;
-    }
-
-    jogosPalpites.forEach(jogo => {
-        const g1 = document.getElementById("p1-" + jogo.id).value;
-        const g2 = document.getElementById("p2-" + jogo.id).value;
-
-        if (g1 === "" || g2 === "") return;
-
-        db.ref(`palpites/${participante}/${jogo.id}`).set({
-            gols1: parseInt(g1),
-            gols2: parseInt(g2)
-        });
-    });
-
-    alert("Palpites salvos ✅");
-}
-
 // INIT
 window.onload = () => {
     carregarParticipantes();
-    carregarJogos();
-    carregarParticipantesSelect();
-    carregarPalpites();
 };
 
 </script>
