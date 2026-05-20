@@ -277,6 +277,13 @@ main button {
   font-weight: 600;
 }
 
+/* MENU DO ADMIN (SUPERIOR) */
+nav.menu {
+    display: flex;
+    gap: 10px;
+    padding: 10px 15px;
+}
+
 /* ==================================================
    RESPONSIVO
 ================================================== */
