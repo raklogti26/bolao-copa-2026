@@ -135,7 +135,7 @@ header p {
 
 /* ✅ ATIVO (SEU PADRÃO A) */
 .menu-item.ativo {
-    background: #2e7d32; /* depois trocamos a cor */
+    background: #FF8C00; /* depois trocamos a cor */
     color: #fff;
 }
 
