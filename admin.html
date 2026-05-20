@@ -225,17 +225,29 @@ function entrarModoEdicao(container, key, nomeAtual) {
 }
 
 
+
 function atualizarParticipante(oldKey, novoNome) {
+
     if (!novoNome.trim()) return;
 
-    db.ref("participantes/" + oldKey).remove();
+    // se não mudou o nome, só recarrega
+    if (oldKey === novoNome) {
+        carregarParticipantes();
+        return;
+    }
 
+    // primeiro cria o novo
     db.ref("participantes/" + novoNome).set({
         nome: novoNome
+    }).then(() => {
+
+        // depois remove o antigo
+        db.ref("participantes/" + oldKey).remove();
+
+        // recarrega a lista
+        carregarParticipantes();
     });
 
-    carregarParticipantes();
-}
 
     
 // INIT
