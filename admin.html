@@ -23,21 +23,38 @@
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
-        <div class="menu">
+       
+ <div class="menu">
 
-            <a href="index.html" class="menu-item">
-                🏆 Ranking
-            </a>
+        <a href="index.html" class="menu-item">
+            🏆 Ranking
+        </a>
 
-            <a href="regras.html" class="menu-item">
-                📋 Regras
-            </a>
+        <a href="regras.html" class="menu-item">
+            📋 Regras
+        </a>
 
-            <a href="admin.html" class="menu-item ativo">
-                ⚙️ Admin
-            </a>
+        <div class="menu-item ativo">⚙️ Admin</div>
+
+        <!-- SUBMENU ADMIN -->
+        <div class="submenu">
+
+            <button class="menu-item ativo" onclick="mostrarAba('participantes')">
+                👥 Participantes
+            </button>
+
+            <button class="menu-item" onclick="mostrarAba('palpites')">
+                🎯 Palpites
+            </button>
+
+            <button class="menu-item" onclick="mostrarAba('resultados')">
+                ⚽ Resultados
+            </button>
 
         </div>
+
+    </div>
+
     </aside>
 
     <!-- CONTEÚDO -->
