@@ -224,6 +224,20 @@ function entrarModoEdicao(container, key, nomeAtual) {
     container.appendChild(acoes);
 }
 
+
+function atualizarParticipante(oldKey, novoNome) {
+    if (!novoNome.trim()) return;
+
+    db.ref("participantes/" + oldKey).remove();
+
+    db.ref("participantes/" + novoNome).set({
+        nome: novoNome
+    });
+
+    carregarParticipantes();
+}
+
+    
 // INIT
 window.onload = () => {
     carregarParticipantes();
