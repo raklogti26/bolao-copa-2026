@@ -112,32 +112,36 @@ firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 // ABAS
-function mostrarAba(aba) {
-    const abas = ["participantes", "palpites", "resultados"];
 
+ const abas = ["participantes", "palpites", "resultados"];
+
+    // esconder todas
     abas.forEach(a => {
         document.getElementById("aba-" + a).style.display = "none";
     });
 
+    // mostrar selecionada
     document.getElementById("aba-" + aba).style.display = "block";
 
-    // atualizar botão ativo
-    document.querySelectorAll('nav .menu-item').forEach(btn => {
+    // remover ativo de todos os botões da sidebar
+    document.querySelectorAll('.sidebar .menu-item').forEach(btn => {
         btn.classList.remove('ativo');
     });
 
+    // ativar o botão clicado
     if (aba === "participantes") {
-        document.querySelectorAll('nav .menu-item')[0].classList.add("ativo");
+        document.querySelectorAll('.sidebar .menu-item')[0].classList.add("ativo");
     }
 
     if (aba === "palpites") {
-        document.querySelectorAll('nav .menu-item')[1].classList.add("ativo");
+        document.querySelectorAll('.sidebar .menu-item')[1].classList.add("ativo");
     }
 
     if (aba === "resultados") {
-        document.querySelectorAll('nav .menu-item')[2].classList.add("ativo");
+        document.querySelectorAll('.sidebar .menu-item')[2].classList.add("ativo");
     }
 
+    // manter lógica existente
     if (aba === "palpites") {
         carregarParticipantesSelect();
         carregarPalpites();
