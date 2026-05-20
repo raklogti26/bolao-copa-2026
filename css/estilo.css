@@ -317,7 +317,7 @@ td {
    REGRAS - BLOCOS VISUAIS (MODELO B)
 ================================================== */
 
-.bloco-regra {
+.bloco-regras-unico {
   position: relative;
   margin-bottom: 25px;
   border-radius: 12px;
@@ -330,7 +330,7 @@ td {
 }
 
 /* 🔥 overlay escuro (essencial pra leitura) */
-.bloco-regra::before {
+.bloco-regras-unico::before {
   content: "";
   position: absolute;
   inset: 0;
