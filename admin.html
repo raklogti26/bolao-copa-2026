@@ -8,99 +8,94 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/estilo.css">
 
-    <!-- 🔥 FIREBASE -->
+    <!-- FIREBASE -->
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 </head>
 
 <body class="admin">
 
-<header>
-    <h1>⚙️ Administração do Bolão</h1>
-</header>
+<!-- HEADER -->
+<header></header>
 
-<nav>
-
-<button class="menu-item ativo" onclick="mostrarAba('participantes')">
-        👥 Participantes
-    </button>
-
-    <button class="menu-item" onclick="mostrarAba('palpites')">
-        🎯 Palpites
-    </button>
-
-    <button class="menu-item" onclick="mostrarAba('resultados')">
-        ⚽ Resultados
-    </button>
-
-    
-</nav>
-
-<main>
-
-    <!-- PARTICIPANTES -->
-    <section id="aba-participantes">
-        <h2>Participantes</h2>
-
-        <input type="text" id="nomeParticipante" placeholder="Nome">
-        <button onclick="adicionarParticipante()">Adicionar</button>
-
-        <ul id="listaParticipantes"></ul>
-    </section>
-
-    <!-- PALPITES -->
-    <section id="aba-palpites" style="display:none;">
-        <h2>Palpites</h2>
-
-        <label>Participante:</label>
-        <select id="selectParticipante"></select>
-
-        <div id="listaPalpites"></div>
-
-        <button onclick="salvarPalpites()">Salvar Palpites</button>
-    </section>
-
-    <!-- RESULTADOS -->
-    <section id="aba-resultados" style="display:none;">
-        <h2>Resultados dos Jogos</h2>
-
-        <div id="listaJogos"></div>
-    </section>
-
-    
+<!-- CONTAINER CORRETO -->
 <div class="container">
 
-<aside class="sidebar">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="menu">
 
-    <div class="menu">
+            <a href="index.html" class="menu-item">
+                🏆 Ranking
+            </a>
 
-        <a href="index.html" class="menu-item">
-            🏆 Ranking
-        </a>
+            <a href="regras.html" class="menu-item">
+                📋 Regras
+            </a>
 
-        <a href="regras.html" class="menu-item">
-            📋 Regras
-        </a>
+            <a href="admin.html" class="menu-item ativo">
+                ⚙️ Admin
+            </a>
 
-        <a href="admin.html" class="menu-item ativo">
-            ⚙️ Admin
-        </a>
+        </div>
+    </aside>
 
-    </div>
+    <!-- CONTEÚDO -->
+    <main>
 
-</aside>
+        <!-- MENU SUPERIOR (MOBILE FUTURO) -->
+        <nav>
 
+            <button class="menu-item ativo" onclick="mostrarAba('participantes')">
+                👥 Participantes
+            </button>
 
+            <button class="menu-item" onclick="mostrarAba('palpites')">
+                🎯 Palpites
+            </button>
 
+            <button class="menu-item" onclick="mostrarAba('resultados')">
+                ⚽ Resultados
+            </button>
 
-    
-</main>
+        </nav>
+
+        <!-- PARTICIPANTES -->
+        <section id="aba-participantes">
+            <h2>Participantes</h2>
+
+            <input type="text" id="nomeParticipante" placeholder="Nome">
+            <button onclick="adicionarParticipante()">Adicionar</button>
+
+            <ul id="listaParticipantes"></ul>
+        </section>
+
+        <!-- PALPITES -->
+        <section id="aba-palpites" style="display:none;">
+            <h2>Palpites</h2>
+
+            <label>Participante:</label>
+            <select id="selectParticipante"></select>
+
+            <div id="listaPalpites"></div>
+
+            <button onclick="salvarPalpites()">Salvar Palpites</button>
+        </section>
+
+        <!-- RESULTADOS -->
+        <section id="aba-resultados" style="display:none;">
+            <h2>Resultados dos Jogos</h2>
+
+            <div id="listaJogos"></div>
+        </section>
+
+    </main>
+
+</div>
 
 <script>
 
-// ==========================
-// 🔥 FIREBASE CONFIG
-// ==========================
+// FIREBASE
 const firebaseConfig = {
   apiKey: "AIzaSyA65IJsycu-tBDu1ZJ2FDXWSRoxetq091I",
   authDomain: "bolao-copa-2026-b39f1.firebaseapp.com",
@@ -114,11 +109,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
-
-// ==========================
-// 🧭 ABAS
-// ==========================
-
+// ABAS
 function mostrarAba(aba) {
     const abas = ["participantes", "palpites", "resultados"];
 
@@ -128,27 +119,37 @@ function mostrarAba(aba) {
 
     document.getElementById("aba-" + aba).style.display = "block";
 
-    // 🔥 correção aqui
+    // atualizar botão ativo
+    document.querySelectorAll('nav .menu-item').forEach(btn => {
+        btn.classList.remove('ativo');
+    });
+
+    if (aba === "participantes") {
+        document.querySelectorAll('nav .menu-item')[0].classList.add("ativo");
+    }
+
+    if (aba === "palpites") {
+        document.querySelectorAll('nav .menu-item')[1].classList.add("ativo");
+    }
+
+    if (aba === "resultados") {
+        document.querySelectorAll('nav .menu-item')[2].classList.add("ativo");
+    }
+
     if (aba === "palpites") {
         carregarParticipantesSelect();
         carregarPalpites();
     }
 }
 
-
-
-// ==========================
-// 👥 PARTICIPANTES
-// ==========================
+// PARTICIPANTES
 function adicionarParticipante() {
     const input = document.getElementById("nomeParticipante");
     const nome = input.value.trim();
 
     if (!nome) return;
 
-    db.ref("participantes/" + nome).set({
-        nome: nome
-    });
+    db.ref("participantes/" + nome).set({ nome });
 
     input.value = "";
     carregarParticipantes();
@@ -183,10 +184,7 @@ function removerParticipante(nome) {
     carregarParticipantes();
 }
 
-
-// ==========================
-// ⚽ RESULTADOS
-// ==========================
+// RESULTADOS
 const jogos = [
     { id: "J1", selecao1: "Brasil", selecao2: "Japão" },
     { id: "J2", selecao1: "Argentina", selecao2: "Canadá" }
@@ -212,7 +210,6 @@ function carregarJogos() {
     });
 }
 
-
 function salvarResultado(jogoId) {
     const g1 = document.getElementById("g1-" + jogoId).value;
     const g2 = document.getElementById("g2-" + jogoId).value;
@@ -228,7 +225,7 @@ function salvarResultado(jogoId) {
         const dados = snap.val();
 
         if (dados && dados.finalizado) {
-            alert("Este jogo já está finalizado e não pode ser alterado.");
+            alert("Este jogo já está finalizado.");
             return;
         }
 
@@ -240,15 +237,11 @@ function salvarResultado(jogoId) {
             finalizado: true
         });
 
-        alert("Resultado salvo e finalizado ✅");
+        alert("Resultado salvo ✅");
     });
 }
 
-
-
-// ==========================
-// 🎯 PALPITES
-// ==========================
+// PALPITES
 const jogosPalpites = [
     { id: "J1", selecao1: "Brasil", selecao2: "Japão" },
     { id: "J2", selecao1: "Argentina", selecao2: "Canadá" }
@@ -313,10 +306,7 @@ function salvarPalpites() {
     alert("Palpites salvos ✅");
 }
 
-
-// ==========================
-// 🚀 INICIALIZAÇÃO
-// ==========================
+// INIT
 window.onload = () => {
     carregarParticipantes();
     carregarJogos();
