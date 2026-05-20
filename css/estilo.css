@@ -114,6 +114,7 @@ header p {
     display: flex;
     flex-direction: column;
     gap: 8px;
+   margin-top: 80px;
 }
 
 .menu-item {
