@@ -124,13 +124,13 @@ header p {
     padding: 10px 12px;
     border-radius: 8px;
     font-weight: 600;
-    color: #333;
+    color: #FF8C00;
     cursor: pointer;
 }
 
 /* hover */
 .menu-item:hover {
-    background: #f3f4f6;
+    background: #F4A460;
 }
 
 /* ✅ ATIVO (SEU PADRÃO A) */
