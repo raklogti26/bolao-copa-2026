@@ -383,7 +383,7 @@ td {
 
 /* TOP HEADER ADMIN */
 .top-header-admin {
-  background-image: url("../img/head6.jpg") right center;
+  background-image: url("../img/head6.jpg") right center / cover no repeat;
 }
 
    
