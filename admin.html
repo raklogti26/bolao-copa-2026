@@ -193,6 +193,37 @@ function removerParticipante(nome) {
     carregarParticipantes();
 }
 
+function entrarModoEdicao(container, key, nomeAtual) {
+
+    container.innerHTML = "";
+
+    const input = document.createElement("input");
+    input.className = "input-edit";
+    input.value = nomeAtual;
+
+    const acoes = document.createElement("div");
+    acoes.className = "acoes-participante";
+
+    const btnSalvar = document.createElement("button");
+    btnSalvar.textContent = "Salvar";
+
+    btnSalvar.onclick = () => {
+        atualizarParticipante(key, input.value);
+    };
+
+    const btnRemover = document.createElement("button");
+    btnRemover.className = "btn-remover";
+    btnRemover.textContent = "Remover";
+
+    btnRemover.onclick = () => removerParticipante(key);
+
+    acoes.appendChild(btnSalvar);
+    acoes.appendChild(btnRemover);
+
+    container.appendChild(input);
+    container.appendChild(acoes);
+}
+
 // INIT
 window.onload = () => {
     carregarParticipantes();
