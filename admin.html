@@ -143,6 +143,7 @@ function adicionarParticipante() {
     carregarParticipantes();
 }
 
+
 function carregarParticipantes() {
     const ul = document.getElementById("listaParticipantes");
     ul.innerHTML = "";
@@ -152,18 +153,38 @@ function carregarParticipantes() {
         if (!dados) return;
 
         Object.keys(dados).forEach(key => {
+
             const li = document.createElement("li");
-            li.textContent = dados[key].nome;
 
-            const btn = document.createElement("button");
-            btn.textContent = "Remover";
-            btn.onclick = () => removerParticipante(key);
+            const container = document.createElement("div");
+            container.className = "item-participante";
 
-            li.appendChild(btn);
+            const nome = document.createElement("span");
+            nome.className = "nome-participante";
+            nome.textContent = dados[key].nome;
+
+            const acoes = document.createElement("div");
+            acoes.className = "acoes-participante";
+
+            const btnEditar = document.createElement("button");
+            btnEditar.className = "btn-editar";
+            btnEditar.textContent = "Editar";
+
+            btnEditar.onclick = () => {
+                entrarModoEdicao(container, key, dados[key].nome);
+            };
+
+            acoes.appendChild(btnEditar);
+
+            container.appendChild(nome);
+            container.appendChild(acoes);
+
+            li.appendChild(container);
             ul.appendChild(li);
         });
     });
 }
+
 
 function removerParticipante(nome) {
     if (!confirm("Deseja mesmo remover este participante?")) return;
