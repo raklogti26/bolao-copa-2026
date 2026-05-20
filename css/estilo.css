@@ -313,6 +313,12 @@ td {
   color: #111 !important;
 }
 
+
+.top-header {
+  background-position: 80% center;
+}
+
+
 /* ==================================================
    REGRAS - BLOCOS VISUAIS (MODELO B)
 ================================================== */
