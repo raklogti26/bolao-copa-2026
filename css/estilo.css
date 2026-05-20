@@ -382,9 +382,11 @@ td {
 
 
 /* TOP HEADER ADMIN */
-.top-header-admin {
-  background-image: url("../img/head7.jpg") right center / cover no repeat;
+
+.top-header.top-header-admin {
+  background: url("../img/head7.jpg") right center / cover no-repeat;
 }
+
 
    
 
